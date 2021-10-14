@@ -12,7 +12,7 @@ const Navbar = () => {
                 <NavLink
                     activeClassName="nav__item-active"
                     className="nav__item"
-                    to="/feed"
+                    to="/"
                 >
                     <div class="icon-with-badge">
                         <span class="material-icons-outlined icon-with-badge__icon">
@@ -34,7 +34,7 @@ const Navbar = () => {
                 <NavLink
                     activeClassName="nav__item-active"
                     className="nav__item"
-                    to="/notifications"
+                    to="/notification"
                 >
                     <div class="icon-with-badge">
                         <span class="material-icons-outlined icon-with-badge__icon">
