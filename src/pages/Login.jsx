@@ -1,9 +1,10 @@
 import "./Login.css";
 import Avatar from "../assets/account_circle_black_48dp.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logInWithCredential } from "../features/auth/request";
+import { logout } from "../features/auth/authSlice";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +24,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(credential.email, credential.password);
         dispatch(
             logInWithCredential({
                 password: credential.password,
@@ -33,14 +33,18 @@ const Login = () => {
     };
 
     const handleLogout = () => {
-        // cartDispatch({
-        //     type: "RESET_CART",
-        // });
-        // wishlistDispatch({
-        //     type: "RESET_WISHLIST",
-        // });
-        // logout();
+        dispatch(logout());
     };
+
+    const clearCredential = () => {
+        if (isUserLoggedIn) {
+            setCredential({ email: "", password: "" });
+        }
+    };
+
+    useEffect(() => {
+        clearCredential();
+    }, [isUserLoggedIn]);
     return (
         <div className="login">
             {isUserLoggedIn ? (

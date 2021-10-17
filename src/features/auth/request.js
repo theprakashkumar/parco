@@ -9,7 +9,6 @@ const logInWithCredential = createAsyncThunk(
                 email,
                 password,
             });
-            console.log("da", response.data);
             return response.data;
         } catch (error) {
             console.log("Something Went Wrong While Logging In!", error);

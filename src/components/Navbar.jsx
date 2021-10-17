@@ -1,5 +1,4 @@
 import "./Navbar.css";
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
