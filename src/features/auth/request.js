@@ -17,4 +17,23 @@ const logInWithCredential = createAsyncThunk(
     }
 );
 
-export { logInWithCredential };
+const signUp = createAsyncThunk(
+    "auth/signUp",
+    async ({ name, username, email, password }) => {
+        console.log(name, email, password);
+        try {
+            const response = await axios.post("/user/signup", {
+                name,
+                username,
+                email,
+                password,
+            });
+            return response.data;
+        } catch (error) {
+            console.log("Something Went Wrong While Signup", error);
+            return error.response;
+        }
+    }
+);
+
+export { logInWithCredential, signUp };
