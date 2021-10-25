@@ -9,6 +9,9 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("token")
+);
 
 ReactDOM.render(
     <React.StrictMode>
