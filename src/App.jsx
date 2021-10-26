@@ -24,7 +24,7 @@ function App() {
                     path="/notification"
                     element={<Notification />}
                 />
-                <PrivateRoutes path="/profile" element={<Profile />} />
+                <PrivateRoutes path="/profile/:userId" element={<Profile />} />
             </Routes>
         </div>
     );

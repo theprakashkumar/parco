@@ -1,7 +1,9 @@
 import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+    const { userId } = useSelector((state) => state.auth);
     return (
         <div className="nav">
             <Link className="nav__logo" to="/">
@@ -44,7 +46,7 @@ const Navbar = () => {
                 <NavLink
                     activeClassName="nav__item-active"
                     className="nav__item"
-                    to="/profile"
+                    to={`/profile/${userId}`}
                 >
                     <div class="icon-with-badge">
                         <span class="material-icons-outlined icon-with-badge__icon">
