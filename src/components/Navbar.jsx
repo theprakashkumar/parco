@@ -16,7 +16,7 @@ const Navbar = () => {
                     to="/"
                 >
                     <div class="icon-with-badge">
-                        <span class="material-icons-outlined icon-with-badge__icon">
+                        <span class="material-icons-round icon-with-badge__icon">
                             home
                         </span>
                     </div>
@@ -27,7 +27,7 @@ const Navbar = () => {
                     to="/explore"
                 >
                     <div class="icon-with-badge">
-                        <span class="material-icons-outlined icon-with-badge__icon">
+                        <span class="material-icons-round icon-with-badge__icon">
                             explore
                         </span>
                     </div>
@@ -38,7 +38,7 @@ const Navbar = () => {
                     to="/notification"
                 >
                     <div class="icon-with-badge">
-                        <span class="material-icons-outlined icon-with-badge__icon">
+                        <span class="material-icons-round icon-with-badge__icon">
                             notifications
                         </span>
                     </div>
@@ -49,7 +49,7 @@ const Navbar = () => {
                     to={`/profile/${userId}`}
                 >
                     <div class="icon-with-badge">
-                        <span class="material-icons-outlined icon-with-badge__icon">
+                        <span class="material-icons-round icon-with-badge__icon">
                             person
                         </span>
                     </div>
