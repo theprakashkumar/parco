@@ -9,6 +9,7 @@ import Notification from "./pages/Notification";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Setting from "./pages/Setting";
 
 function App() {
     return (
@@ -25,6 +26,10 @@ function App() {
                     element={<Notification />}
                 />
                 <PrivateRoutes path="/profile/:userId" element={<Profile />} />
+                <PrivateRoutes
+                    path="/profile/:userId/setting"
+                    element={<Setting />}
+                />
             </Routes>
         </div>
     );
