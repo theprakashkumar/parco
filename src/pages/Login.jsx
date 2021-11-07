@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
     const [credential, setCredential] = useState({ email: "", password: "" });
 
-    const { isUserLoggedIn, name } = useSelector((state) => state.auth);
+    const { isUserLoggedIn, user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -54,7 +54,7 @@ const Login = () => {
                         src={Avatar}
                         alt="Avatar Logo"
                     />
-                    <div className="heading--h6 mt-1 mb-1">Hi {name}!</div>
+                    <div className="heading--h6 mt-1 mb-1">Hi {user.name}!</div>
                     <button className="btn" onClick={handleLogout}>
                         Logout
                     </button>

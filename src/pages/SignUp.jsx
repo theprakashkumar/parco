@@ -17,12 +17,11 @@ const initialUserDetails = {
 const SignUp = () => {
     const [userDetails, setUserDetails] = useState(initialUserDetails);
     const dispatch = useDispatch();
-    const isUserLoggedIn = useSelector((state) => state.isUserLoggedIn);
+    const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({ ...userDetails });
         dispatch(signUp({ ...userDetails }));
     };
 
@@ -35,7 +34,9 @@ const SignUp = () => {
 
     useEffect(() => {
         const redirect = () => {
-            navigate("/");
+            if (isUserLoggedIn) {
+                navigate("/");
+            }
         };
         redirect();
     }, [isUserLoggedIn]);

@@ -1,14 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logInWithCredential, signUp } from "./request";
-import { useNavigate } from "react-router";
+import { logInWithCredential, signUp, follow, unFollow } from "./request";
 
 const authSlice = createSlice({
     name: "auth",
     initialState: {
         token: JSON.parse(localStorage.getItem("token")) || null,
         userId: JSON.parse(localStorage.getItem("userId")) || null,
-        name: JSON.parse(localStorage.getItem("name")) || null,
-        username: JSON.parse(localStorage.getItem("username")) || null,
+        user: JSON.parse(localStorage.getItem("user")) || null,
         isUserLoggedIn:
             JSON.parse(localStorage.getItem("isUserLoggedIn")) || false,
         status: JSON.parse(localStorage.getItem("token")) ? "received" : "idle",
@@ -18,14 +16,12 @@ const authSlice = createSlice({
         logout: (state) => {
             localStorage.removeItem("token");
             localStorage.removeItem("userId");
-            localStorage.removeItem("name");
-            localStorage.removeItem("username");
+            localStorage.removeItem("user");
             localStorage.removeItem("isUserLoggedIn");
             localStorage.removeItem("status");
             state.token = null;
             state.userId = null;
-            state.name = null;
-            state.username = null;
+            state.user = null;
             state.isUserLoggedIn = false;
             state.status = "idle";
         },
@@ -36,17 +32,15 @@ const authSlice = createSlice({
         },
         [logInWithCredential.fulfilled]: (state, action) => {
             if (action.payload.success) {
-                const { id, username, name, token } = action.payload;
+                const { id, user, token } = action.payload;
                 state.token = token;
                 state.userId = id;
-                state.name = name;
-                state.username = username;
+                state.user = user;
                 state.isUserLoggedIn = true;
                 state.status = "fulfilled";
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("userId", JSON.stringify(id));
-                localStorage.setItem("name", JSON.stringify(name));
-                localStorage.setItem("username", JSON.stringify(username));
+                localStorage.setItem("user", JSON.stringify(user));
                 localStorage.setItem("isUserLoggedIn", JSON.stringify(true));
             }
         },
@@ -59,21 +53,48 @@ const authSlice = createSlice({
         },
         [signUp.fulfilled]: (state, action) => {
             if (action.payload.success) {
-                const { id, username, name, token } = action.payload;
+                const { id, user, token } = action.payload;
                 state.token = token;
                 state.userId = id;
-                state.name = name;
-                state.username = username;
+                state.user = user;
                 state.isUserLoggedIn = true;
                 state.status = "fulfilled";
                 localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("userId", JSON.stringify(id));
-                localStorage.setItem("name", JSON.stringify(name));
-                localStorage.setItem("username", JSON.stringify(username));
+                localStorage.setItem("user", JSON.stringify(user));
                 localStorage.setItem("isUserLoggedIn", JSON.stringify(true));
             }
         },
         [signUp.rejected]: (state, action) => {
+            state.status = "error";
+            state.error = action.payload;
+        },
+        [follow.pending]: (state) => {
+            state.status = "following";
+        },
+        [follow.fulfilled]: (state, action) => {
+            const { followedId } = action.payload;
+            console.log("call", action.payload);
+            state.user.following.push(followedId);
+            state.status = "followed";
+        },
+        [follow.rejected]: (state, action) => {
+            state.status = "error";
+            state.error = action.payload;
+        },
+        [unFollow.pending]: (state) => {
+            state.status = "unFollowing";
+        },
+        [unFollow.fulfilled]: (state, action) => {
+            const { unFollowedId } = action.payload;
+            console.log("call", action.payload);
+            state.user.following.splice(
+                state.user.following.indexOf(unFollowedId),
+                1
+            );
+            state.status = "unFollowed";
+        },
+        [unFollow.rejected]: (state, action) => {
             state.status = "error";
             state.error = action.payload;
         },

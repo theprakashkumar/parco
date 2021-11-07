@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Post from "../components/Post";
 import useImage from "../hooks/useImage";
 import { logout } from "../features/auth/authSlice";
+import useFollow from "../hooks/useFollow";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -19,10 +20,11 @@ const Profile = () => {
     const { post } = useSelector((state) => state.profile);
 
     const imageLink = useImage(image, name);
+    const { handleFollow, handleUnFollow, isFollowed } = useFollow(userId);
 
     useEffect(() => {
         dispatch(getProfile({ userId }));
-    }, []);
+    }, [userId]);
 
     return (
         <div>
@@ -36,7 +38,7 @@ const Profile = () => {
                             src={imageLink}
                             className="profile-header__image"
                         />
-                        <div className="heading--h6 mt-0-5">{name}</div>
+                        <div className="heading heading--h6 mt-0-5">{name}</div>
                         <div className="profile-header__username">
                             @{username}
                         </div>
@@ -60,7 +62,16 @@ const Profile = () => {
                                 </>
                             ) : (
                                 <>
-                                    <button>Follow</button>
+                                    <button
+                                        className="btn"
+                                        onClick={
+                                            isFollowed
+                                                ? () => handleUnFollow(userId)
+                                                : () => handleFollow(userId)
+                                        }
+                                    >
+                                        {isFollowed ? "Unfollow" : "Follow"}
+                                    </button>
                                 </>
                             )}
                         </div>

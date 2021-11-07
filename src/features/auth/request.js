@@ -9,6 +9,7 @@ const logInWithCredential = createAsyncThunk(
                 email,
                 password,
             });
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log("Something Went Wrong While Logging In!", error);
@@ -20,7 +21,6 @@ const logInWithCredential = createAsyncThunk(
 const signUp = createAsyncThunk(
     "auth/signUp",
     async ({ name, username, email, password }) => {
-        console.log(name, email, password);
         try {
             const response = await axios.post("/user/signup", {
                 name,
@@ -36,4 +36,24 @@ const signUp = createAsyncThunk(
     }
 );
 
-export { logInWithCredential, signUp };
+const follow = createAsyncThunk("auth/follow", async (userId) => {
+    try {
+        const response = await axios.put(`/action/follow/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.log("Something Went Wrong While Following the User!");
+        return error.response;
+    }
+});
+
+const unFollow = createAsyncThunk("auth/unfollow", async (userId) => {
+    try {
+        const response = await axios.delete(`/action/unfollow/${userId}`);
+        return response.data;
+    } catch (error) {
+        console.log("Something Went Wrong While Unfollowing the User!");
+        return error.response;
+    }
+});
+
+export { logInWithCredential, signUp, follow, unFollow };
