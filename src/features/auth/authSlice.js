@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logInWithCredential, signUp, follow, unFollow } from "./request";
+import {
+    logInWithCredential,
+    signUp,
+    follow,
+    unFollow,
+    updateUser,
+} from "./request";
 
 const authSlice = createSlice({
     name: "auth",
@@ -74,7 +80,6 @@ const authSlice = createSlice({
         },
         [follow.fulfilled]: (state, action) => {
             const { followedId } = action.payload;
-            console.log("call", action.payload);
             state.user.following.push(followedId);
             state.status = "followed";
         },
@@ -87,7 +92,6 @@ const authSlice = createSlice({
         },
         [unFollow.fulfilled]: (state, action) => {
             const { unFollowedId } = action.payload;
-            console.log("call", action.payload);
             state.user.following.splice(
                 state.user.following.indexOf(unFollowedId),
                 1
@@ -95,6 +99,22 @@ const authSlice = createSlice({
             state.status = "unFollowed";
         },
         [unFollow.rejected]: (state, action) => {
+            state.status = "error";
+            state.error = action.payload;
+        },
+        [updateUser.pending]: (state) => {
+            state.status = "updatingUser";
+        },
+        [updateUser.fulfilled]: (state, action) => {
+            const { name, username, description, profilePhoto } =
+                action.payload.user;
+            state.user.name = name;
+            state.user.username = username;
+            state.user.description = description;
+            state.user.profilePhoto = profilePhoto;
+            state.status = "userUpdated";
+        },
+        [updateUser.rejected]: (state, action) => {
             state.status = "error";
             state.error = action.payload;
         },

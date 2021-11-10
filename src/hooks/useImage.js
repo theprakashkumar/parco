@@ -5,12 +5,14 @@ import { useSelector } from "react-redux";
 const useImage = (imageLink, name) => {
     const [image, setImage] = useState("");
     const { profileStatus } = useSelector((state) => state.profile);
+    console.log(imageLink);
 
+    console.log("useImage");
     const getImageLink = () => {
         if (profileStatus === "fulfilled") {
             const nameInitial = name[0];
             const profileImage = imageLink
-                ? "image"
+                ? imageLink
                 : `https://ui-avatars.com/api/?name=${nameInitial}`;
             setImage(profileImage);
         }

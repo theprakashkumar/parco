@@ -15,11 +15,11 @@ const Profile = () => {
     const { userId: loggedInUser } = useSelector((state) => state.auth);
     const { profileStatus } = useSelector((state) => state.profile);
     const {
-        profile: { name, image, username, description },
+        profile: { name, profilePhoto, username, description },
     } = useSelector((state) => state.profile);
     const { post } = useSelector((state) => state.profile);
 
-    const imageLink = useImage(image, name);
+    const imageLink = useImage(profilePhoto, name);
     const { handleFollow, handleUnFollow, isFollowed } = useFollow(userId);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const Profile = () => {
                     <div className="profile-header">
                         <img
                             src={imageLink}
-                            className="profile-header__image"
+                            className="profile-header__photo"
                         />
                         <div className="heading heading--h6 mt-0-5">{name}</div>
                         <div className="profile-header__username">
@@ -48,11 +48,12 @@ const Profile = () => {
                         <div className="profile-header__button-container mt-1">
                             {userId === loggedInUser ? (
                                 <>
-                                    <button className="btn profile-header__button-edit">
-                                        <Link to={`/profile/${userId}/setting`}>
-                                            Edit
-                                        </Link>
-                                    </button>
+                                    <Link
+                                        className="btn profile-header__button-edit"
+                                        to={`/profile/${userId}/setting`}
+                                    >
+                                        Edit
+                                    </Link>
                                     <button
                                         className="btn profile-header__button-logout ml-1"
                                         onClick={() => dispatch(logout())}

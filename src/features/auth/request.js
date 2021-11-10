@@ -56,4 +56,23 @@ const unFollow = createAsyncThunk("auth/unfollow", async (userId) => {
     }
 });
 
-export { logInWithCredential, signUp, follow, unFollow };
+const updateUser = createAsyncThunk(
+    "auth/updateUser",
+    async ({ userId, name, username, description, profilePhoto }) => {
+        try {
+            const response = await axios.put(`/user/update/${userId}`, {
+                name,
+                username,
+                description,
+                profilePhoto,
+            });
+            console.log("user updated", response.data);
+            return response.data;
+        } catch (error) {
+            console.log("Something Went Wrong While Updating the User!");
+            return error.response;
+        }
+    }
+);
+
+export { logInWithCredential, signUp, follow, unFollow, updateUser };
