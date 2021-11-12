@@ -43,29 +43,41 @@ const NewPost = () => {
     };
 
     return (
-        <div className="NewPost">
+        <div className="new-post">
             <form onSubmit={postHandler}>
-                <textarea
-                    name="caption"
-                    value={caption}
-                    rows="4"
-                    cols="50"
-                    onChange={captionHandler}
-                    placeholder="What's Up?"
-                ></textarea>
-                <label>
-                    <span class="material-icons-outlined">file_upload</span>
-                    <input type="file" hidden onChange={photoHandler}></input>
-                </label>
-                <button>Post</button>
-                {photoLink && (
-                    <img
-                        src={photoLink}
-                        alt="Girl in a jacket"
-                        width="500"
-                        height="600"
-                    />
-                )}
+                <div className="new-post__upper-element">
+                    <textarea
+                        name="caption"
+                        value={caption}
+                        onChange={captionHandler}
+                        placeholder="What's Up?"
+                        className="new-post__textarea"
+                    ></textarea>
+                </div>
+                <div className="new-post__lower-element">
+                    <div className="new-post__lower-element__button-container">
+                        <label>
+                            <span class="material-icons-round new-post__add-photo">
+                                add_photo_alternate
+                            </span>
+                            <input
+                                type="file"
+                                hidden
+                                onChange={photoHandler}
+                            ></input>
+                        </label>
+                        <button className="new-post__btn">
+                            <span class="material-icons-round">send</span>
+                        </button>
+                    </div>
+                    {photoLink && (
+                        <img
+                            src={photoLink}
+                            alt="post-image"
+                            className="new-post__image"
+                        />
+                    )}
+                </div>
             </form>
         </div>
     );
