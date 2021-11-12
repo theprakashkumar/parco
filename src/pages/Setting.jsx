@@ -8,9 +8,9 @@ import { useDispatch } from "react-redux";
 
 const Setting = () => {
     const {
-        user: { _id, name, photo, username, description },
+        user: { _id, name, profilePhoto, username, description },
     } = useSelector((state) => state.auth);
-    const photoLink = useImage(photo, name);
+    const photoLink = useImage(profilePhoto, name);
 
     const [newPhoto, setNewPhoto] = useState("");
     const { newPhotoLink } = usePhotoUpload(newPhoto);

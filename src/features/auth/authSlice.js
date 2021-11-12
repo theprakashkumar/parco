@@ -5,6 +5,7 @@ import {
     follow,
     unFollow,
     updateUser,
+    initializeAuthUser,
 } from "./request";
 
 const authSlice = createSlice({
@@ -72,6 +73,21 @@ const authSlice = createSlice({
             }
         },
         [signUp.rejected]: (state, action) => {
+            state.status = "error";
+            state.error = action.payload;
+        },
+        [initializeAuthUser.pending]: (state) => {
+            state.status = "pending";
+        },
+        [initializeAuthUser.fulfilled]: (state, action) => {
+            if (action.payload.success) {
+                const { user } = action.payload;
+                state.user = user;
+                state.status = "fulfilled";
+                localStorage.setItem("user", JSON.stringify(user));
+            }
+        },
+        [initializeAuthUser.rejected]: (state, action) => {
             state.status = "error";
             state.error = action.payload;
         },

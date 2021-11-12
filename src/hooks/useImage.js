@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 const useImage = (imageLink, name) => {
     const [image, setImage] = useState("");
     const { profileStatus } = useSelector((state) => state.profile);
-    console.log(imageLink);
 
-    console.log("useImage");
     const getImageLink = () => {
-        if (profileStatus === "fulfilled") {
+        if (profileStatus === "fulfilled" || profileStatus === "userUpdated") {
             const nameInitial = name[0];
             const profileImage = imageLink
                 ? imageLink
@@ -20,7 +18,7 @@ const useImage = (imageLink, name) => {
 
     useEffect(() => {
         getImageLink();
-    }, [profileStatus]);
+    }, [profileStatus, imageLink]);
     return image;
 };
 

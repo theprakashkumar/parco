@@ -36,6 +36,21 @@ const signUp = createAsyncThunk(
     }
 );
 
+const initializeAuthUser = createAsyncThunk(
+    "auth/initializeAuthUser",
+    async (userId) => {
+        console.log("ini");
+        try {
+            const response = await axios.get(`/user/initialize/${userId}`);
+            console.log("response", response.data);
+            return response.data;
+        } catch (error) {
+            console.log("Something Went Wrong While Initializing the User!");
+            return error.response;
+        }
+    }
+);
+
 const follow = createAsyncThunk("auth/follow", async (userId) => {
     try {
         const response = await axios.put(`/action/follow/${userId}`);
@@ -75,4 +90,11 @@ const updateUser = createAsyncThunk(
     }
 );
 
-export { logInWithCredential, signUp, follow, unFollow, updateUser };
+export {
+    logInWithCredential,
+    signUp,
+    follow,
+    unFollow,
+    updateUser,
+    initializeAuthUser,
+};

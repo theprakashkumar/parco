@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Feed from "./pages/Feed";
 import Explore from "./pages/Explore";
@@ -10,8 +11,16 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Setting from "./pages/Setting";
+import { initializeAuthUser } from "./features/auth/request";
 
 function App() {
+    const dispatch = useDispatch();
+    const { userId, isUserLoggedIn } = useSelector((state) => state.auth);
+    useEffect(() => {
+        if (isUserLoggedIn) {
+            dispatch(initializeAuthUser(userId));
+        }
+    }, []);
     return (
         <div className="App">
             <Navbar />
