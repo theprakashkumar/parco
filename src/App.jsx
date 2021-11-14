@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Setting from "./pages/Setting";
 import { initializeAuthUser } from "./features/auth/request";
+import { getFeed } from "./features/post/request";
 
 function App() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
     useEffect(() => {
         if (isUserLoggedIn) {
             dispatch(initializeAuthUser(userId));
+            dispatch(getFeed());
         }
     }, []);
     return (

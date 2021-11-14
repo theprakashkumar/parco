@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { newPost } from "./request";
+import { getFeed, newPost } from "./request";
 
 const postSlice = createSlice({
     name: "post",
     initialState: {
+        feedPost: [],
         postStatus: "idle",
         error: null,
     },
@@ -16,7 +17,18 @@ const postSlice = createSlice({
             state.postStatus = "posted";
         },
         [newPost.rejected]: (state, action) => {
-            state.postStatus = "error";
+            state.postStatus = "newPostError";
+            state.error = action.payload;
+        },
+        [getFeed.pending]: (state) => {
+            state.postStatus = "pending";
+        },
+        [getFeed.fulfilled]: (state, action) => {
+            state.feedPost = action.payload.feed;
+            state.postStatus = "receivedFeed";
+        },
+        [getFeed.rejected]: (state, action) => {
+            state.postStatus = "feedError";
             state.error = action.payload;
         },
     },
