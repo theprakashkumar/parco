@@ -1,16 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const getFeed = createAsyncThunk("post/feed", async () => {
-    try {
-        const response = await axios.get("/feed");
-        return response.data;
-    } catch (error) {
-        console.log(error);
-        return error.response;
-    }
-});
-
 const newPost = createAsyncThunk("post/newPost", async ({ caption, photo }) => {
     try {
         const response = await axios.post("/post/new", {
@@ -23,11 +13,43 @@ const newPost = createAsyncThunk("post/newPost", async ({ caption, photo }) => {
         return error.response;
     }
 });
-// const getPost;
-// const likePost;
-// const unlikePost;
+
+const getFeed = createAsyncThunk("post/feed", async () => {
+    try {
+        const response = await axios.get("/feed");
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error.response;
+    }
+});
+
+const likePost = createAsyncThunk("post/likePost", async ({ postId }) => {
+    try {
+        const response = await axios.put(`/action/like/${postId}`);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error.response;
+    }
+});
+
+const removeLikePost = createAsyncThunk(
+    "post/removeLikePost",
+    async ({ postId }) => {
+        try {
+            const response = await axios.delete(`/action/like/${postId}`);
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error.response;
+        }
+    }
+);
 // const commentPost;
 // const updatePost;
 // const deletePost;`
 
-export { getFeed, newPost };
+export { newPost, getFeed, likePost, removeLikePost };

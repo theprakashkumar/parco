@@ -2,20 +2,40 @@ import "./Post.css";
 import useImage from "../hooks/useImage";
 import { parseJSON, formatDistanceToNow } from "date-fns";
 import { useState } from "react";
+import { useSelector, dispatch, useDispatch } from "react-redux";
+import isAlreadyLiked from "../utils/isAlreadyLiked";
+import { likePost, removeLikePost } from "../features/post/request";
 
 const Post = ({
     user: { name, username, profilePhoto },
+    _id: postId,
     caption,
     photo,
     time,
+    likes,
+    comment,
 }) => {
+    const dispatch = useDispatch();
     const [commenting, setCommenting] = useState(false);
+
+    const { userId } = useSelector((state) => state.auth);
+
     const imageLink = useImage(profilePhoto, name);
 
     const timeAgo = () => {
         const parsedTime = parseJSON(time);
         const timePeriod = formatDistanceToNow(parsedTime);
         return timePeriod;
+    };
+
+    const isLiked = isAlreadyLiked(likes, userId);
+
+    const handleLike = () => {
+        if (!isLiked) {
+            dispatch(likePost({ postId }));
+        } else {
+            dispatch(removeLikePost({ postId }));
+        }
     };
 
     return (
@@ -52,11 +72,16 @@ const Post = ({
                         width="24"
                         height="24"
                         viewBox="0 0 20 24"
-                        fill={"black" ? "#f87171" : "#94a3b8"}
+                        fill={isLiked ? "#f87171" : "#0f172a"}
                         xmlns="http://www.w3.org/2000/svg"
+                        className="post__controllers__btn__svg"
+                        onClick={handleLike}
                     >
                         <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"></path>
                     </svg>
+                    <span className="ml-1">
+                        {likes.length === 0 ? "" : `${likes.length} likes`}
+                    </span>
                 </button>
                 <button className="post__controllers__btn">
                     <span

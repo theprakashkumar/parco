@@ -52,6 +52,12 @@
 .post__controllers__btn {
     border: none;
     background: none;
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+}
+
+.post__controllers__btn__svg {
     cursor: pointer;
 }
 
@@ -66,7 +72,7 @@
 }
 
 .post__comment__btn {
-    margin-left:  auto;
+    margin-left: auto;
     display: block;
     border: none;
     background: none;
