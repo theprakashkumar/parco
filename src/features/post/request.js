@@ -27,7 +27,6 @@ const getFeed = createAsyncThunk("post/feed", async () => {
 const likePost = createAsyncThunk("post/likePost", async ({ postId }) => {
     try {
         const response = await axios.put(`/action/like/${postId}`);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -40,7 +39,6 @@ const removeLikePost = createAsyncThunk(
     async ({ postId }) => {
         try {
             const response = await axios.delete(`/action/like/${postId}`);
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -48,8 +46,21 @@ const removeLikePost = createAsyncThunk(
         }
     }
 );
-// const commentPost;
-// const updatePost;
+const commentPost = createAsyncThunk(
+    "post/commentPost",
+    async ({ postId, content }) => {
+        try {
+            const response = await axios.put(`/action/comment/${postId}`, {
+                content,
+            });
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error.response;
+        }
+    }
+);
 // const deletePost;`
 
-export { newPost, getFeed, likePost, removeLikePost };
+export { newPost, getFeed, likePost, removeLikePost, commentPost };

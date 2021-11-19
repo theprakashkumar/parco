@@ -80,8 +80,8 @@ const authSlice = createSlice({
             state.status = "pending";
         },
         [initializeAuthUser.fulfilled]: (state, action) => {
-            if (action.payload.success) {
-                const { user } = action.payload;
+            const { success, user } = action.payload;
+            if (success) {
                 state.user = user;
                 state.status = "fulfilled";
                 localStorage.setItem("user", JSON.stringify(user));

@@ -4,7 +4,11 @@ import { parseJSON, formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import { useSelector, dispatch, useDispatch } from "react-redux";
 import isAlreadyLiked from "../utils/isAlreadyLiked";
-import { likePost, removeLikePost } from "../features/post/request";
+import {
+    commentPost,
+    likePost,
+    removeLikePost,
+} from "../features/post/request";
 
 const Post = ({
     user: { name, username, profilePhoto },
@@ -17,6 +21,7 @@ const Post = ({
 }) => {
     const dispatch = useDispatch();
     const [commenting, setCommenting] = useState(false);
+    const [content, setContent] = useState("");
 
     const { userId } = useSelector((state) => state.auth);
 
@@ -36,6 +41,13 @@ const Post = ({
         } else {
             dispatch(removeLikePost({ postId }));
         }
+    };
+
+    const handleComment = (e) => {
+        e.preventDefault();
+        dispatch(commentPost({ postId, content }));
+        setCommenting(false);
+        setContent("");
     };
 
     return (
@@ -92,10 +104,17 @@ const Post = ({
                     </span>
                 </button>
             </div>
-            <div className="post__comment">
+            {comment.map((com) => (
+                <p>{com.content}</p>
+            ))}
+            <div className="post__comment mt-1">
                 {commenting && (
-                    <form>
-                        <textarea className="post__comment__textarea"></textarea>
+                    <form onSubmit={handleComment}>
+                        <textarea
+                            className="post__comment__textarea"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                        ></textarea>
                         <button className="post__comment__btn">Comment</button>
                     </form>
                 )}

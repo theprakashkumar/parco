@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getFeed, newPost, likePost, removeLikePost } from "./request";
+import {
+    getFeed,
+    newPost,
+    likePost,
+    removeLikePost,
+    commentPost,
+} from "./request";
 
 const postSlice = createSlice({
     name: "post",
@@ -35,9 +41,7 @@ const postSlice = createSlice({
             state.postStatus = "linkingPost";
         },
         [likePost.fulfilled]: (state, action) => {
-            const success = action.payload.success;
-            const postId = action.payload.postId;
-            const likes = action.payload.likes;
+            const { success, postId, likes } = action.payload;
             if (success) {
                 state.feedPost = state.feedPost.map((post) => {
                     if (post._id === postId) {
@@ -56,9 +60,8 @@ const postSlice = createSlice({
             state.postStatus = "removingLikeOnPost";
         },
         [removeLikePost.fulfilled]: (state, action) => {
-            const success = action.payload.success;
-            const postId = action.payload.postId;
-            const likes = action.payload.likes;
+            const { success, postId, likes } = action.payload;
+
             if (success) {
                 state.feedPost = state.feedPost.map((post) => {
                     if (post._id === postId) {
@@ -69,8 +72,24 @@ const postSlice = createSlice({
             }
             state.postStatus = "removedLinkFromPost";
         },
-        [removeLikePost.rejected]: (state, action) => {
-            state.postStatus = "removeLikeError";
+        [commentPost.rejected]: (state, action) => {
+            state.postStatus = "commentPostError";
+            state.error = action.payload;
+        },
+        [commentPost.fulfilled]: (state, action) => {
+            const { success, postId, comment } = action.payload;
+            if (success) {
+                state.feedPost = state.feedPost.map((post) => {
+                    if (post._id === postId) {
+                        post.comment = comment;
+                    }
+                    return post;
+                });
+            }
+            state.postStatus = "commentAddedPost";
+        },
+        [commentPost.rejected]: (state, action) => {
+            state.postStatus = "addCommentError";
             state.error = action.payload;
         },
     },
