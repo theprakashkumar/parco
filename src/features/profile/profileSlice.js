@@ -15,8 +15,9 @@ const profileSlice = createSlice({
             state.profileStatus = "pending";
         },
         [getProfile.fulfilled]: (state, action) => {
-            state.profile = action.payload;
-            state.post = action.payload.post;
+            const { user, post } = action.payload;
+            state.profile = user;
+            state.post = post;
             state.profileStatus = "fulfilled";
         },
         [getProfile.rejected]: (state, action) => {

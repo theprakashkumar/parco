@@ -23,7 +23,8 @@ const useImage = (imageLink, name) => {
 
     useEffect(() => {
         getImageLink();
-    }, [profileStatus, postStatus, imageLink]);
+        console.log({ image, imageLink, name });
+    }, []);
     return image;
 };
 

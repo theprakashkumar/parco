@@ -6,7 +6,8 @@ const getProfile = createAsyncThunk(
     async ({ userId }) => {
         try {
             const response = await axios.get(`/user/${userId}`);
-            return response.data.user;
+            console.log(response.data.user);
+            return response.data;
         } catch (error) {
             console.log("Something Went Wrong While Fetching User Data", error);
             return error.response;
