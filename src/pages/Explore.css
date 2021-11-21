@@ -1,0 +1,19 @@
+.explore__input-container {
+    width: 95%;
+    max-width: 55rem;
+    background: #fff;
+    margin: 1rem auto;
+    padding: 0.2rem;
+    box-shadow: 0 0 3px 1px var(--input-outline);
+}
+.explore__input {
+    border: none;
+    margin: 1rem auto;
+    width: 95%;
+    display: block;
+    padding: 0.6rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    cursor: pointer;
+    outline: transparent;
+}

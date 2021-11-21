@@ -12,7 +12,6 @@ const useFollow = (userId) => {
     const [isFollowed, setIsFollowed] = useState(false);
 
     const handleFollow = () => {
-        console.log(userId);
         dispatch(follow(userId));
     };
 
@@ -20,9 +19,16 @@ const useFollow = (userId) => {
         dispatch(unFollow(userId));
     };
 
+    const followUnFollow = () => {
+        if (isFollowed) {
+            handleUnFollow();
+        } else {
+            handleFollow();
+        }
+    };
+
     const isUserFollowed = () => {
         const inFollowing = following.includes(userId);
-        console.log("is", inFollowing, following);
         if (inFollowing) {
             setIsFollowed(true);
         } else {
@@ -34,7 +40,7 @@ const useFollow = (userId) => {
         isUserFollowed();
     }, [following]);
 
-    return { handleFollow, handleUnFollow, isFollowed };
+    return { handleFollow, handleUnFollow, isFollowed, followUnFollow };
 };
 
 export default useFollow;

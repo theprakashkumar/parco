@@ -11,14 +11,14 @@ const exploreSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getUsers.pending]: (state) => {
-            state.userStatus = "pending";
+            state.userStatus = "pendingExplore";
         },
         [getUsers.fulfilled]: (state, action) => {
             state.users = action.payload.user;
-            state.userStatus = "received";
+            state.userStatus = "receivedExplore";
         },
         [getUsers.rejected]: (state, action) => {
-            state.userStatus = "rejected";
+            state.userStatus = "rejectedExplore";
             state.error = action.payload;
         },
     },

@@ -6,12 +6,14 @@ const useImage = (imageLink, name) => {
     const [image, setImage] = useState("");
     const { profileStatus } = useSelector((state) => state.profile);
     const { postStatus } = useSelector((state) => state.post);
+    const { userStatus } = useSelector((state) => state.explore);
 
     const getImageLink = () => {
         if (
             profileStatus === "fulfilled" ||
             profileStatus === "userUpdated" ||
-            postStatus === "receivedFeed"
+            postStatus === "receivedFeed" ||
+            userStatus === "receivedExplore"
         ) {
             const nameInitial = name[0];
             const profileImage = imageLink

@@ -15,3 +15,5 @@ Bug(s):
 -   Change the send icon to button in `NewPost` component.
 
 -   Add a custom hook to handle all the inputs.
+
+-   Refactor profile page so that it uses `followUnFollow` from the hook directly.
