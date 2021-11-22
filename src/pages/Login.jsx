@@ -6,9 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logInWithCredential } from "../features/auth/request";
 import { logout } from "../features/auth/authSlice";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 const Login = () => {
     const [credential, setCredential] = useState({ email: "", password: "" });
 
@@ -102,7 +99,6 @@ const Login = () => {
                     </div>
                 </>
             )}
-            <ToastContainer />
         </div>
     );
 };

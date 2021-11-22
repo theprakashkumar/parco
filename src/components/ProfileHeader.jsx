@@ -20,7 +20,11 @@ const ProfileHeader = ({
 
     return (
         <div className="profile-header">
-            <img src={imageLink} className="profile-header__photo" />
+            <img
+                src={imageLink}
+                className="profile-header__photo"
+                alt="profile"
+            />
             <div className="heading heading--h6 mt-0-5">{name}</div>
             <div className="profile-header__username">@{username}</div>
             <div className="profile-header__description">{description}</div>

@@ -10,12 +10,14 @@ const ProfileCard = ({ name, username, _id, profilePhoto }) => {
         <div className="profile-card">
             <img
                 src={imageLink}
-                alt="profile-photo"
+                alt="profile"
                 className="profile-card__profile-photo"
             />
             <Link to={`/profile/${_id}`}>
                 <div className="profile-card__name-container ml-1">
-                    <div className="profile-card__name heading heading--h6">{name}</div>
+                    <div className="profile-card__name heading heading--h6">
+                        {name}
+                    </div>
                     <div className="profile-card__username">@{username}</div>
                 </div>
             </Link>

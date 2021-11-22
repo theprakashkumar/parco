@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../features/auth/request";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";
 
 const initialUserDetails = {
@@ -97,7 +95,6 @@ const SignUp = () => {
                     </button>
                 </form>
             </div>
-            <ToastContainer />
         </div>
     );
 };

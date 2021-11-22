@@ -54,6 +54,7 @@ const Setting = () => {
                     <img
                         src={newPhotoLink ? newPhotoLink : photoLink}
                         className="setting__user-setting__photo"
+                        alt="new-profile"
                     />
                     <label className="btn btn--icon btn--sm setting__user-setting__upload-btn">
                         <span class="material-icons-round btn--icon__icon">

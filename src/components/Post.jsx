@@ -2,7 +2,7 @@ import "./Post.css";
 import useImage from "../hooks/useImage";
 import { parseJSON, formatDistanceToNow } from "date-fns";
 import { useState } from "react";
-import { useSelector, dispatch, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import isAlreadyLiked from "../utils/isAlreadyLiked";
 import {
     commentPost,
@@ -73,7 +73,7 @@ const Post = ({
                         <img
                             src={photo}
                             className="post__post__photo"
-                            alt="post-photo"
+                            alt="post"
                         />
                     )}
                 </div>

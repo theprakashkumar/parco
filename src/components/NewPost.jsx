@@ -16,11 +16,6 @@ const NewPost = () => {
     const CLOUD_URL = process.env.REACT_APP_CLOUD_URL;
     const PRESET = process.env.REACT_APP_PRESET;
 
-    const photoUrl = () => {
-        const photoLink = getPhotoLink(PRESET, CLOUD_NAME, CLOUD_URL, photo);
-        setPhotoLink(photoLink);
-    };
-
     const captionHandler = (e) => {
         setCaption(e.target.value);
     };
