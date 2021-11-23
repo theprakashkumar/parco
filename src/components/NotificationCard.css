@@ -1,0 +1,17 @@
+.notification-card {
+    width: 100%;
+    max-width: 55rem;
+    margin: 1rem auto;
+    background: #fff;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 3px 1px var(--input-outline);
+}
+
+.notification-card--right {
+    margin-left: auto;
+    font-size: 1.5rem;
+    color: var(--main-text-light-color);
+}
