@@ -1,9 +1,9 @@
 import "./Post.css";
 import useImage from "../hooks/useImage";
-import { parseJSON, formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import isAlreadyLiked from "../utils/isAlreadyLiked";
+import timeAgo from "../utils/timeAgo";
 import {
     commentPost,
     likePost,
@@ -26,12 +26,6 @@ const Post = ({
     const { userId } = useSelector((state) => state.auth);
 
     const imageLink = useImage(profilePhoto, name);
-
-    const timeAgo = () => {
-        const parsedTime = parseJSON(time);
-        const timePeriod = formatDistanceToNow(parsedTime);
-        return timePeriod;
-    };
 
     const isLiked = isAlreadyLiked(likes, userId);
 
@@ -64,7 +58,9 @@ const Post = ({
                         @{username}
                     </div>
                 </div>
-                <div className="post__top-section__time">{timeAgo()} ago</div>
+                <div className="post__top-section__time">
+                    {timeAgo(time)} ago
+                </div>
             </div>
             <div className="post__post">
                 <div className="post__post__caption mt-1 mb-1">{caption}</div>
