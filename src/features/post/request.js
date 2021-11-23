@@ -61,6 +61,27 @@ const commentPost = createAsyncThunk(
         }
     }
 );
+
+const getSinglePost = createAsyncThunk(
+    "/post/getSinglePost",
+    async ({ postId }) => {
+        try {
+            const response = await axios.get(`/post/${postId}`);
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error.response;
+        }
+    }
+);
 // const deletePost;`
 
-export { newPost, getFeed, likePost, removeLikePost, commentPost };
+export {
+    newPost,
+    getFeed,
+    likePost,
+    removeLikePost,
+    commentPost,
+    getSinglePost,
+};

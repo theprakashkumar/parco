@@ -27,7 +27,7 @@ const NotificationCard = ({
                 </Link>
                 <span> {notificationText()} </span>
 
-                <Link className="btn btn--link" to={`/feed/${post}`}>
+                <Link className="btn btn--link" to={`/post/${post}`}>
                     {notificationType === "COMMENT" ||
                     notificationType === "LIKE"
                         ? "post"

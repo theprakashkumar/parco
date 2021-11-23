@@ -13,7 +13,8 @@ const useImage = (imageLink, name) => {
             profileStatus === "fulfilled" ||
             profileStatus === "userUpdated" ||
             postStatus === "receivedFeed" ||
-            userStatus === "receivedExplore"
+            userStatus === "receivedExplore" ||
+            postStatus === "receivedSingPost"
         ) {
             const nameInitial = name[0];
             const profileImage = imageLink

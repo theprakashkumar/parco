@@ -5,11 +5,13 @@ import {
     likePost,
     removeLikePost,
     commentPost,
+    getSinglePost,
 } from "./request";
 
 const postSlice = createSlice({
     name: "post",
     initialState: {
+        singlePost: null,
         feedPost: [],
         postStatus: "idle",
         error: null,
@@ -73,8 +75,11 @@ const postSlice = createSlice({
             state.postStatus = "removedLinkFromPost";
         },
         [commentPost.rejected]: (state, action) => {
-            state.postStatus = "commentPostError";
+            state.postStatus = "addCommentError";
             state.error = action.payload;
+        },
+        [commentPost.pending]: (state) => {
+            state.postStatus = "commentPostPending";
         },
         [commentPost.fulfilled]: (state, action) => {
             const { success, postId, comment } = action.payload;
@@ -88,9 +93,20 @@ const postSlice = createSlice({
             }
             state.postStatus = "commentAddedPost";
         },
-        [commentPost.rejected]: (state, action) => {
-            state.postStatus = "addCommentError";
+        [getSinglePost.pending]: (state, action) => {
+            state.postStatus = "singlePostPending";
             state.error = action.payload;
+        },
+        [getSinglePost.rejected]: (state, action) => {
+            state.postStatus = "getSinglePostError";
+            state.error = action.payload;
+        },
+        [getSinglePost.fulfilled]: (state, action) => {
+            const { success, post } = action.payload;
+            if (success) {
+                state.singlePost = post;
+            }
+            state.postStatus = "receivedSingPost";
         },
     },
 });

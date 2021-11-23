@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Feed from "./pages/Feed";
+import PostPage from "./pages/PostPage";
 import Explore from "./pages/Explore";
 import Notification from "./pages/Notification";
 import Profile from "./pages/Profile";
@@ -31,6 +32,8 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
 
                 <PrivateRoutes path="/" element={<Feed />} />
+                <PrivateRoutes path="/post/:id" element={<PostPage />} />
+
                 <PrivateRoutes path="/explore" element={<Explore />} />
                 <PrivateRoutes
                     path="/notification"
