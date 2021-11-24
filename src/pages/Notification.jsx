@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationCard from "../components/NotificationCard";
+import Loader from "../components/Loader";
 import { getNotification } from "../features/notification/request";
 
 const Notification = () => {
@@ -14,7 +15,7 @@ const Notification = () => {
     return (
         <div>
             {notificationStatus === "pending" ? (
-                <p>Loading</p>
+                <Loader />
             ) : (
                 <div className="notification-container">
                     {notifications.map((notification) => (

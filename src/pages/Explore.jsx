@@ -3,6 +3,7 @@ import { getUsers } from "../features/explore/request";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import ProfileCard from "../components/ProfileCard";
+import Loader from "../components/Loader";
 
 const Explore = () => {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Explore = () => {
                 />
             </div>
             {userStatus === "pendingExplore" ? (
-                <p>Loading</p>
+                <Loader />
             ) : (
                 <div className="explore__user-container">
                     {exploreFeed?.map((user) => (

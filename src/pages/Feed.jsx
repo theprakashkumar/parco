@@ -3,6 +3,7 @@ import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { getFeed } from "../features/post/request";
 import { useEffect } from "react";
+import Loader from "../components/Loader";
 
 const Feed = () => {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Feed = () => {
     return (
         <div className="feed">
             {postStatus === "pending" ? (
-                <p>Loading</p>
+                <Loader />
             ) : (
                 <>
                     <NewPost />

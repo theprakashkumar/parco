@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { getProfile } from "../features/profile/request";
 import Post from "../components/Post";
 import ProfileHeader from "../components/ProfileHeader";
+import Loader from "../components/Loader";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Profile = () => {
     return (
         <div>
             {profileStatus === "pending" ? (
-                <div>Loading</div>
+                <Loader />
             ) : (
                 <div>
                     {/* Profile Header */}
