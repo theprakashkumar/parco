@@ -19,17 +19,17 @@ const postSlice = createSlice({
     reducers: {},
     extraReducers: {
         [newPost.pending]: (state) => {
-            state.postStatus = "loading";
+            state.postStatus = "newPostLoading";
         },
         [newPost.fulfilled]: (state, action) => {
-            state.postStatus = "posted";
+            state.postStatus = "newPostPosted";
         },
         [newPost.rejected]: (state, action) => {
             state.postStatus = "newPostError";
             state.error = action.payload;
         },
         [getFeed.pending]: (state) => {
-            state.postStatus = "pending";
+            state.postStatus = "getFeedPending";
         },
         [getFeed.fulfilled]: (state, action) => {
             state.feedPost = action.payload.feed;

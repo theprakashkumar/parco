@@ -1,8 +1,10 @@
 import "./NewPost.css";
 import getPhotoLink from "../utils/getPhotoLink";
 import { useRef, useState } from "react";
-import { newPost } from "../features/post/request";
-import { useDispatch } from "react-redux";
+import { getFeed, newPost } from "../features/post/request";
+import { useDispatch, useSelector } from "react-redux";
+import Post from "../assets/paper-plane-svgrepo-com.svg";
+import { PuffLoader } from "react-spinners";
 
 const NewPost = () => {
     const [photo, setPhoto] = useState("");
@@ -11,6 +13,7 @@ const NewPost = () => {
     const [caption, setCaption] = useState("");
 
     const dispatch = useDispatch();
+    const { postStatus } = useSelector((state) => state.post);
 
     const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
     const CLOUD_URL = process.env.REACT_APP_CLOUD_URL;
@@ -32,9 +35,13 @@ const NewPost = () => {
         setPhotoLink(photoLink);
     };
 
-    const postHandler = (e) => {
+    const postHandler = async (e) => {
         e.preventDefault();
-        dispatch(newPost({ caption, photo: photoLink }));
+        await dispatch(newPost({ caption, photo: photoLink }));
+        console.log(postStatus);
+        setCaption("");
+        setPhoto("");
+        await dispatch(getFeed());
     };
 
     return (
@@ -61,8 +68,23 @@ const NewPost = () => {
                                 onChange={photoHandler}
                             ></input>
                         </label>
-                        <button className="new-post__btn">
-                            <span class="material-icons-round">send</span>
+                        <button className="btn new-post__btn">
+                            {postStatus === "newPostLoading" ? (
+                                <div className="new-post__btn__loading-container">
+                                    <PuffLoader
+                                        color={"#0f172a"}
+                                        size={30}
+                                        speedMultiplier={1.5}
+                                    />
+                                </div>
+                            ) : (
+                                <div className="new-post__btn_post">
+                                    <img src={Post} className="mr-0-5" alt="" />
+                                    <span className="new-post__btn_post__text">
+                                        Post
+                                    </span>
+                                </div>
+                            )}
                         </button>
                     </div>
                     {photoLink && (

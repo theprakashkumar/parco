@@ -4,7 +4,6 @@
     width: 95%;
     margin: 1rem auto;
     padding: 1rem;
-    padding-bottom: 0;
 }
 
 .new-post__textarea {
@@ -36,6 +35,34 @@
     border: none;
     background: none;
     cursor: pointer;
+    width: 25%;
+    height: 4rem;
+    padding: 0.7rem;
+    border: 1.5px solid var(--main-text-color);
+}
+
+.new-post__btn:hover {
+    background: inherit;
+    color: inherit;
+}
+
+.new-post__btn_post {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.new-post__btn_post__text {
+    align-self: center;
+}
+
+.new-post__btn__loading-container {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .new-post__image {

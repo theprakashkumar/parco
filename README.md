@@ -8,16 +8,11 @@ Bug(s):
 
 Improvement(s);
 
-
 -   Rename all "image" to "photo".
 
 -   Add loading animation in setting button while user is getting updated and show toast when user get updated.
 
--   After posting clear the form.
-
 -   Refactor other component which uses `useImage` so that we don't need to have conditional in the the hook.
-
--   Change the send icon to button in `NewPost` component.
 
 -   Add a custom hook to handle all the inputs.
 
