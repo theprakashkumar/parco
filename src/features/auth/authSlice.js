@@ -131,7 +131,7 @@ const authSlice = createSlice({
             state.status = "userUpdated";
         },
         [updateUser.rejected]: (state, action) => {
-            state.status = "error";
+            state.status = "updateError";
             state.error = action.payload;
         },
     },

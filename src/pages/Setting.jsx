@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 const Setting = () => {
     const {
         user: { _id, name, profilePhoto, username, description },
+        status,
     } = useSelector((state) => state.auth);
     const photoLink = useImage(profilePhoto, name);
 
@@ -34,9 +35,9 @@ const Setting = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(
+        await dispatch(
             updateUser({
                 userId: _id,
                 name: userDetails.name,
@@ -101,7 +102,7 @@ const Setting = () => {
                         />
                     </div>
                     <button class="btn btn--lg mt-1 setting__user-setting__update-btn">
-                        Update
+                        {status === "updatingUser" ? "Updating" : "Update"}
                     </button>
                 </form>
             </div>

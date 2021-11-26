@@ -64,6 +64,7 @@ const follow = createAsyncThunk("auth/follow", async (userId) => {
 const unFollow = createAsyncThunk("auth/unfollow", async (userId) => {
     try {
         const response = await axios.delete(`/action/unfollow/${userId}`);
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.log("Something Went Wrong While Unfollowing the User!");
