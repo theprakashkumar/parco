@@ -26,7 +26,6 @@ const useImage = (imageLink, name) => {
 
     useEffect(() => {
         getImageLink();
-        console.log({ image, imageLink, name });
     }, []);
     return image;
 };
