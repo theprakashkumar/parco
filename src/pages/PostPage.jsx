@@ -9,15 +9,15 @@ const PostPage = () => {
     const dispatch = useDispatch();
     const { id: postId } = useParams();
 
-    const { singlePost, postStatus } = useSelector((state) => state.post);
+    const { singlePost, singlePostStatus } = useSelector((state) => state.post);
     useEffect(() => {
         dispatch(getSinglePost({ postId }));
     }, [postId]);
     return (
         <div>
-            {postStatus === "receivedSingPost" ? (
+            {singlePostStatus === "receivedSingPost" ? (
                 <div>
-                    <Post {...singlePost} />
+                    <Post {...singlePost} page="FEED" />
                 </div>
             ) : (
                 <Loader />

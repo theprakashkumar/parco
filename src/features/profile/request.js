@@ -15,4 +15,42 @@ const getProfile = createAsyncThunk(
     }
 );
 
-export { getProfile };
+const profileLike = createAsyncThunk("profile/likePost", async ({ postId }) => {
+    try {
+        const response = await axios.put(`/action/like/${postId}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error.response;
+    }
+});
+
+const profileRemoveLike = createAsyncThunk(
+    "profile/removeLikePost",
+    async ({ postId }) => {
+        try {
+            const response = await axios.delete(`/action/like/${postId}`);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error.response;
+        }
+    }
+);
+const profileComment = createAsyncThunk(
+    "profile/commentPost",
+    async ({ postId, content }) => {
+        try {
+            const response = await axios.put(`/action/comment/${postId}`, {
+                content,
+            });
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error.response;
+        }
+    }
+);
+
+export { getProfile, profileLike, profileRemoveLike, profileComment };

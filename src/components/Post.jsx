@@ -5,10 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import isAlreadyLiked from "../utils/isAlreadyLiked";
 import timeAgo from "../utils/timeAgo";
 import {
-    commentPost,
     likePost,
     removeLikePost,
+    commentPost,
 } from "../features/post/request";
+
+import {
+    profileLike,
+    profileRemoveLike,
+    profileComment,
+} from "../features/profile/request";
 
 const Post = ({
     user: { name, username, profilePhoto },
@@ -18,6 +24,7 @@ const Post = ({
     time,
     likes,
     comment,
+    page,
 }) => {
     const dispatch = useDispatch();
     const [commenting, setCommenting] = useState(false);
@@ -30,16 +37,28 @@ const Post = ({
     const isLiked = isAlreadyLiked(likes, userId);
 
     const handleLike = () => {
-        if (!isLiked) {
-            dispatch(likePost({ postId }));
+        if (page === "FEED") {
+            if (!isLiked) {
+                dispatch(likePost({ postId }));
+            } else {
+                dispatch(removeLikePost({ postId }));
+            }
         } else {
-            dispatch(removeLikePost({ postId }));
+            if (!isLiked) {
+                dispatch(profileLike({ postId }));
+            } else {
+                dispatch(profileRemoveLike({ postId }));
+            }
         }
     };
 
     const handleComment = (e) => {
         e.preventDefault();
-        dispatch(commentPost({ postId, content }));
+        if (page === "FEED") {
+            dispatch(commentPost({ postId, content }));
+        } else {
+            dispatch(profileComment({ postId, content }));
+        }
         setCommenting(false);
         setContent("");
     };

@@ -12,6 +12,7 @@ const postSlice = createSlice({
     name: "post",
     initialState: {
         singlePost: null,
+        singlePostStatus: "idle",
         feedPost: [],
         postStatus: "idle",
         error: null,
@@ -52,6 +53,9 @@ const postSlice = createSlice({
                     return post;
                 });
             }
+            if (state.singlePost._id === postId) {
+                state.singlePost.likes = likes;
+            }
             state.postStatus = "likedPost";
         },
         [likePost.rejected]: (state, action) => {
@@ -91,14 +95,17 @@ const postSlice = createSlice({
                     return post;
                 });
             }
+            if (state.singlePost._id === postId) {
+                state.singlePost.comment = comment;
+            }
             state.postStatus = "commentAddedPost";
         },
         [getSinglePost.pending]: (state, action) => {
-            state.postStatus = "singlePostPending";
+            state.singlePostStatus = "singlePostPending";
             state.error = action.payload;
         },
         [getSinglePost.rejected]: (state, action) => {
-            state.postStatus = "getSinglePostError";
+            state.singlePostStatus = "getSinglePostError";
             state.error = action.payload;
         },
         [getSinglePost.fulfilled]: (state, action) => {
@@ -106,7 +113,7 @@ const postSlice = createSlice({
             if (success) {
                 state.singlePost = post;
             }
-            state.postStatus = "receivedSingPost";
+            state.singlePostStatus = "receivedSingPost";
         },
     },
 });

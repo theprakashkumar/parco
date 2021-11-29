@@ -20,7 +20,7 @@ const Feed = () => {
                 <>
                     <NewPost />
                     {feedPost.map((post) => (
-                        <Post {...post} />
+                        <Post {...post} page="FEED"/>
                     ))}
                 </>
             )}

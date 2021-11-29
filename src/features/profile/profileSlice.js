@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProfile } from "./request";
+import {
+    getProfile,
+    profileLike,
+    profileRemoveLike,
+    profileComment,
+} from "./request";
 
 const profileSlice = createSlice({
     name: "profile",
@@ -23,6 +28,64 @@ const profileSlice = createSlice({
         [getProfile.rejected]: (state, action) => {
             state.profileStatus = "rejected";
             state.error = action.payload;
+        },
+        [profileLike.pending]: (state) => {
+            state.profileStatus = "linkingPost";
+        },
+        [profileLike.fulfilled]: (state, action) => {
+            const { success, postId, likes } = action.payload;
+            if (success) {
+                state.post = state.post.map((post) => {
+                    if (post._id === postId) {
+                        post.likes = likes;
+                    }
+                    return post;
+                });
+            }
+            state.profileStatus = "likedPost";
+        },
+        [profileLike.rejected]: (state, action) => {
+            state.profileStatus = "likeError";
+            state.error = action.payload;
+        },
+        [profileRemoveLike.pending]: (state) => {
+            state.profileStatus = "removingLikeOnPost";
+        },
+        [profileRemoveLike.fulfilled]: (state, action) => {
+            const { success, postId, likes } = action.payload;
+
+            if (success) {
+                state.post = state.post.map((post) => {
+                    if (post._id === postId) {
+                        post.likes = likes;
+                    }
+                    return post;
+                });
+            }
+            state.profileStatus = "removedLinkFromPost";
+        },
+        [profileRemoveLike.rejected]: (state, action) => {
+            state.profileStatus = "likeError";
+            state.error = action.payload;
+        },
+        [profileComment.rejected]: (state, action) => {
+            state.profileStatus = "addCommentError";
+            state.error = action.payload;
+        },
+        [profileComment.pending]: (state) => {
+            state.profileStatus = "commentPostPending";
+        },
+        [profileComment.fulfilled]: (state, action) => {
+            const { success, postId, comment } = action.payload;
+            if (success) {
+                state.post = state.post.map((post) => {
+                    if (post._id === postId) {
+                        post.comment = comment;
+                    }
+                    return post;
+                });
+            }
+            state.profileStatus = "commentAddedPost";
         },
     },
 });

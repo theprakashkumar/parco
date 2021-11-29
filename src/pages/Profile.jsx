@@ -45,6 +45,7 @@ const Profile = () => {
                             time={post.time}
                             likes={post.likes}
                             comment={post.comment}
+                            page="PROFILE"
                         />
                     ))}
                 </div>
