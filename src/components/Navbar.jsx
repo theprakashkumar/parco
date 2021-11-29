@@ -13,6 +13,7 @@ const Navbar = () => {
                 <NavLink
                     activeClassName="nav__item-active"
                     className="nav__item"
+                    end
                     to="/"
                 >
                     <div class="icon-with-badge">

@@ -4,7 +4,6 @@ import { Route, Navigate } from "react-router-dom";
 const PrivateRoutes = ({ path, ...props }) => {
     const { isUserLoggedIn } = useSelector((state) => state.auth);
 
-    console.log("user", { isUserLoggedIn });
     return isUserLoggedIn ? (
         <Route to={path} {...props} />
     ) : (
