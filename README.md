@@ -10,10 +10,6 @@ Improvement(s);
 
 -   Rename all "image" to "photo".
 
--   Add loading animation in setting button while user is getting updated and show toast when user get updated.
-
 -   Refactor other component which uses `useImage` so that we don't need to have conditional in the the hook.
 
 -   Add a custom hook to handle all the inputs.
-
--   Refactor profile page so that it uses `followUnFollow` from the hook directly.

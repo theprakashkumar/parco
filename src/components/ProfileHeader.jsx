@@ -12,7 +12,7 @@ const ProfileHeader = ({
     username,
     description,
 }) => {
-    const { handleFollow, handleUnFollow, isFollowed } = useFollow(userId);
+    const { followUnFollow, isFollowed } = useFollow(userId);
     const { userId: loggedInUser } = useSelector((state) => state.auth);
 
     const imageLink = useImage(profilePhoto, name);
@@ -46,14 +46,7 @@ const ProfileHeader = ({
                     </>
                 ) : (
                     <>
-                        <button
-                            className="btn"
-                            onClick={
-                                isFollowed
-                                    ? () => handleUnFollow(userId)
-                                    : () => handleFollow(userId)
-                            }
-                        >
+                        <button className="btn" onClick={followUnFollow}>
                             {isFollowed ? "Unfollow" : "Follow"}
                         </button>
                     </>
