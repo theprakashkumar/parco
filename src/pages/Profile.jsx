@@ -23,9 +23,7 @@ const Profile = () => {
 
     return (
         <div>
-            {profileStatus === "pending" ? (
-                <Loader />
-            ) : (
+            {profileStatus === "gotProfile" ? (
                 <div>
                     {/* Profile Header */}
                     <ProfileHeader
@@ -49,6 +47,8 @@ const Profile = () => {
                         />
                     ))}
                 </div>
+            ) : (
+                <Loader />
             )}
         </div>
     );

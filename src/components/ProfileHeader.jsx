@@ -1,6 +1,6 @@
 import "./ProfileHeader.css";
 import { Link } from "react-router-dom";
-import useImage from "../hooks/useImage";
+import usePhoto from "../hooks/usePhoto";
 import { logout } from "../features/auth/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import useFollow from "../hooks/useFollow";
@@ -15,13 +15,14 @@ const ProfileHeader = ({
     const { followUnFollow, isFollowed } = useFollow(userId);
     const { userId: loggedInUser } = useSelector((state) => state.auth);
 
-    const imageLink = useImage(profilePhoto, name);
+    const photoLink = usePhoto(profilePhoto, name);
+
     const dispatch = useDispatch();
 
     return (
         <div className="profile-header">
             <img
-                src={imageLink}
+                src={photoLink}
                 className="profile-header__photo"
                 alt="profile"
             />

@@ -1,6 +1,6 @@
 import "./Setting.css";
 import { useState } from "react";
-import useImage from "../hooks/useImage";
+import usePhoto from "../hooks/usePhoto";
 import { useSelector } from "react-redux";
 import usePhotoUpload from "../hooks/usePhotoUpload";
 import { updateUser } from "../features/auth/request";
@@ -11,7 +11,7 @@ const Setting = () => {
         user: { _id, name, profilePhoto, username, description },
         status,
     } = useSelector((state) => state.auth);
-    const photoLink = useImage(profilePhoto, name);
+    const photoLink = usePhoto(profilePhoto, name);
 
     const [newPhoto, setNewPhoto] = useState("");
     const { newPhotoLink } = usePhotoUpload(newPhoto);

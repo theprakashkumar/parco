@@ -17,16 +17,16 @@ const profileSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getProfile.pending]: (state) => {
-            state.profileStatus = "pending";
+            state.profileStatus = "gettingProfile";
         },
         [getProfile.fulfilled]: (state, action) => {
             const { user, post } = action.payload;
             state.profile = user;
             state.post = post;
-            state.profileStatus = "fulfilled";
+            state.profileStatus = "gotProfile";
         },
         [getProfile.rejected]: (state, action) => {
-            state.profileStatus = "rejected";
+            state.profileStatus = "getProfileError";
             state.error = action.payload;
         },
         [profileLike.pending]: (state) => {

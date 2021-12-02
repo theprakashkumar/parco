@@ -1,5 +1,5 @@
 import "./Post.css";
-import useImage from "../hooks/useImage";
+import usePhoto from "../hooks/usePhoto";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import isAlreadyLiked from "../utils/isAlreadyLiked";
@@ -32,7 +32,7 @@ const Post = ({
 
     const { userId } = useSelector((state) => state.auth);
 
-    const imageLink = useImage(profilePhoto, name);
+    const photoLink = usePhoto(profilePhoto, name);
 
     const isLiked = isAlreadyLiked(likes, userId);
 
@@ -67,7 +67,7 @@ const Post = ({
         <div className="post">
             <div className="post__top-section">
                 <img
-                    src={imageLink}
+                    src={photoLink}
                     alt="profile"
                     className="post__top-section__profile"
                 />
