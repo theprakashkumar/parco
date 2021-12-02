@@ -14,15 +14,15 @@ const Feed = () => {
     }, []);
     return (
         <div className="feed">
-            {postStatus === "pending" ? (
-                <Loader />
-            ) : (
+            {postStatus === "receivedFeed" ? (
                 <>
                     <NewPost />
                     {feedPost.map((post) => (
-                        <Post {...post} page="FEED"/>
+                        <Post {...post} page="FEED" />
                     ))}
                 </>
+            ) : (
+                <Loader />
             )}
         </div>
     );
