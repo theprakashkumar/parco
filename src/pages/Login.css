@@ -1,7 +1,3 @@
-.login {
-    min-height: 90vh;
-}
-
 .logged-in-container {
     display: flex;
     flex-direction: column;
