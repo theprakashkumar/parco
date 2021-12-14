@@ -14,7 +14,7 @@ const Feed = () => {
     }, []);
     return (
         <div className="feed">
-            {postStatus === "receivedFeed" ? (
+            {postStatus !== "getFeedPending" ? (
                 <>
                     <NewPost />
                     {feedPost.map((post) => (

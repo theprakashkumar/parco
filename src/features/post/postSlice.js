@@ -53,7 +53,7 @@ const postSlice = createSlice({
                     return post;
                 });
             }
-            if (state.singlePost._id === postId) {
+            if (state.singlePost?._id === postId) {
                 state.singlePost.likes = likes;
             }
             state.postStatus = "likedPost";
@@ -75,6 +75,9 @@ const postSlice = createSlice({
                     }
                     return post;
                 });
+                if (state.singlePost?._id === postId) {
+                    state.singlePost.likes = likes;
+                }
             }
             state.postStatus = "removedLinkFromPost";
         },
@@ -95,7 +98,7 @@ const postSlice = createSlice({
                     return post;
                 });
             }
-            if (state.singlePost._id === postId) {
+            if (state.singlePost?._id === postId) {
                 state.singlePost.comment = comment;
             }
             state.postStatus = "commentAddedPost";
