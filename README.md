@@ -1,9 +1,18 @@
-Bug(s):
+# Parco
 
--   When the setting page loads for the first time, it makes request to Cloudnary without an image.
+## Parco is a social media app.
 
-Improvement(s);
+### Tech Stack
 
--   Rename all "image" to "photo".
+-   React(Hooks)
+-   React Router
+-   Redux-Toolkit
+-   Express.js
+-   MongoDB
+-   JWT
 
--   Add a custom hook to handle all the inputs.
+Live Preview: https://parcoindia.netlify.app/
+
+Backend Hosted: https://Parco-Backend.theprakashkumar.repl.co/
+
+Backend Code: https://github.com/ThePrakashKumar/Sinema-Backend/tree/dev
