@@ -29,6 +29,16 @@ const Login = () => {
         );
     };
 
+    const guestLogin = async (e) => {
+        console.log("guest");
+        dispatch(
+            logInWithCredential({
+                password: "guest",
+                email: "guest@gmail.com",
+            })
+        );
+    };
+
     const handleLogout = () => {
         dispatch(logout());
     };
@@ -85,10 +95,17 @@ const Login = () => {
                                 />
                             </div>
 
-                            <button className="btn btn--md login-btn mt-1 mb-1">
+                            <button className="btn btn--md login-btn login-btn-dark mt-1 mb-1">
                                 Login
                             </button>
                         </form>
+
+                        <button
+                            onClick={guestLogin}
+                            className="btn btn--md login-btn mb-1"
+                        >
+                            Login as Guest
+                        </button>
 
                         <Link
                             className="btn btn--link login-btn-link"
