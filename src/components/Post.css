@@ -44,6 +44,19 @@
     height: auto;
 }
 
+.post__comment {
+    background: var(--main-background);
+}
+
+.post__comment__user {
+    font-weight: 500;
+    margin-left: 0.1rem;
+}
+
+.post__comment__user:hover {
+    border-bottom: 2px solid var(--main-text-color);
+}
+
 .post__controllers {
     display: flex;
     justify-content: space-between;

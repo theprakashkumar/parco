@@ -2,6 +2,7 @@ import "./Post.css";
 import usePhoto from "../hooks/usePhoto";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import isAlreadyLiked from "../utils/isAlreadyLiked";
 import timeAgo from "../utils/timeAgo";
 import {
@@ -17,7 +18,7 @@ import {
 } from "../features/profile/request";
 
 const Post = ({
-    user: { name, username, profilePhoto },
+    user: { _id, name, username, profilePhoto },
     _id: postId,
     caption,
     photo,
@@ -74,7 +75,7 @@ const Post = ({
                 <div className="post__top-section__name-container ml-1">
                     <div className="post__top-section__name">{name}</div>
                     <div className="post__top-section__username">
-                        @{username}
+                        <Link to={`/profile/${_id}`}>@{username}</Link>
                     </div>
                 </div>
                 <div className="post__top-section__time">
@@ -123,11 +124,24 @@ const Post = ({
                     </span>
                 </button>
             </div>
-            {comment.map((com) => (
-                <p>{com.content}</p>
-            ))}
             <div className="post__comment mt-1">
-                {commenting && (
+                {comment &&
+                    comment.map((com) => (
+                        <div>
+                            <span className="post__comment__user mr-1">
+                                <Link to={`/profile/${com.user._id}`}>
+                                    {com.user.username}
+                                </Link>
+                            </span>
+                            <span className="post__comment__content">
+                                {com.content}
+                            </span>
+                        </div>
+                    ))}
+            </div>
+
+            {commenting && (
+                <div className="post__comment mt-1">
                     <form onSubmit={handleComment}>
                         <textarea
                             className="post__comment__textarea"
@@ -136,8 +150,8 @@ const Post = ({
                         ></textarea>
                         <button className="post__comment__btn">Comment</button>
                     </form>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 };
