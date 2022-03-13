@@ -148,7 +148,12 @@ const Post = ({
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                         ></textarea>
-                        <button className="post__comment__btn">Comment</button>
+                        <button
+                            className="post__comment__btn"
+                            disabled={!content}
+                        >
+                            Comment
+                        </button>
                     </form>
                 </div>
             )}
