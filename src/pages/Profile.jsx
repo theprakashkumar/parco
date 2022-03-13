@@ -12,7 +12,14 @@ const Profile = () => {
     const { userId } = useParams();
     const { profileStatus } = useSelector((state) => state.profile);
     const {
-        profile: { name, profilePhoto, username, description },
+        profile: {
+            followers,
+            following,
+            name,
+            profilePhoto,
+            username,
+            description,
+        },
     } = useSelector((state) => state.profile);
 
     const { post } = useSelector((state) => state.profile);
@@ -27,6 +34,8 @@ const Profile = () => {
                 <div>
                     {/* Profile Header */}
                     <ProfileHeader
+                        followers={followers}
+                        following={following}
                         userId={userId}
                         name={name}
                         profilePhoto={profilePhoto}

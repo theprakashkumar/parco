@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import useFollow from "../hooks/useFollow";
 
 const ProfileHeader = ({
+    followers,
+    following,
     userId,
     name,
     profilePhoto,
@@ -29,6 +31,14 @@ const ProfileHeader = ({
             <div className="heading heading--h6 mt-0-5">{name}</div>
             <div className="profile-header__username">@{username}</div>
             <div className="profile-header__description">{description}</div>
+            <div className="profile-header__user-following__container">
+                <div className="profile-header__user-following__follower mr-2">
+                    {`${followers.length} followers`}
+                </div>
+                <div className="profile-header__user-following__following">
+                    {`${following.length} following`}
+                </div>
+            </div>
             <div className="profile-header__button-container mt-1">
                 {userId === loggedInUser ? (
                     <>

@@ -26,6 +26,12 @@
 .profile-header__description {
     font-size: 2rem;
 }
+
+.profile-header__user-following__container {
+    display: flex;
+    color: #3d4658;
+    font-size: 1.8rem;
+}
 .profile-header__button-logout {
     color: var(--error-dark);
 }
