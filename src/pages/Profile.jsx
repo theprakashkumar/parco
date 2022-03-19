@@ -30,7 +30,8 @@ const Profile = () => {
 
     return (
         <div>
-            {profileStatus === "gotProfile" ? (
+            {profileStatus === "dataReceived" ||
+            profileStatus === "addingInteraction" ? (
                 <div>
                     {/* Profile Header */}
                     <ProfileHeader

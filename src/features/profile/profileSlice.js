@@ -17,20 +17,20 @@ const profileSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getProfile.pending]: (state) => {
-            state.profileStatus = "gettingProfile";
+            state.profileStatus = "loading";
         },
         [getProfile.fulfilled]: (state, action) => {
             const { user, post } = action.payload;
             state.profile = user;
             state.post = post;
-            state.profileStatus = "gotProfile";
+            state.profileStatus = "dataReceived";
         },
         [getProfile.rejected]: (state, action) => {
             state.profileStatus = "getProfileError";
             state.error = action.payload;
         },
         [profileLike.pending]: (state) => {
-            state.profileStatus = "linkingPost";
+            state.profileStatus = "addingInteraction";
         },
         [profileLike.fulfilled]: (state, action) => {
             const { success, postId, likes } = action.payload;
@@ -42,14 +42,14 @@ const profileSlice = createSlice({
                     return post;
                 });
             }
-            state.profileStatus = "likedPost";
+            state.profileStatus = "dataReceived";
         },
         [profileLike.rejected]: (state, action) => {
             state.profileStatus = "likeError";
             state.error = action.payload;
         },
         [profileRemoveLike.pending]: (state) => {
-            state.profileStatus = "removingLikeOnPost";
+            state.profileStatus = "addingInteraction";
         },
         [profileRemoveLike.fulfilled]: (state, action) => {
             const { success, postId, likes } = action.payload;
@@ -62,7 +62,7 @@ const profileSlice = createSlice({
                     return post;
                 });
             }
-            state.profileStatus = "removedLinkFromPost";
+            state.profileStatus = "addingInteraction";
         },
         [profileRemoveLike.rejected]: (state, action) => {
             state.profileStatus = "likeError";
@@ -73,7 +73,7 @@ const profileSlice = createSlice({
             state.error = action.payload;
         },
         [profileComment.pending]: (state) => {
-            state.profileStatus = "commentPostPending";
+            state.profileStatus = "addingInteraction";
         },
         [profileComment.fulfilled]: (state, action) => {
             const { success, postId, comment } = action.payload;
@@ -85,7 +85,7 @@ const profileSlice = createSlice({
                     return post;
                 });
             }
-            state.profileStatus = "commentAddedPost";
+            state.profileStatus = "dataReceived";
         },
     },
 });
