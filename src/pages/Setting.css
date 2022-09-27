@@ -1,0 +1,30 @@
+.setting__user-setting {
+    width: 100%;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+}
+
+.setting__user-setting__photo {
+    width: 30%;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.input-text-description {
+    background-image: url(../assets/description.png);
+    transform: rotate(90);
+}
+
+.setting__user-setting__upload-btn {
+    width: fit-content;
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+.setting__user-setting__update-btn {
+    width: 100%;
+}

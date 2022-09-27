@@ -4,11 +4,17 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
+    "axios": "^0.23.0",
     "cra-template-redux": "1.0.3",
+    "date-fns": "^2.25.0",
+    "history": "^5.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
-    "react-scripts": "4.0.3"
+    "react-router": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-scripts": "4.0.3",
+    "react-spinners": "^0.11.0"
   },
   "scripts": {
     "start": "react-scripts start",

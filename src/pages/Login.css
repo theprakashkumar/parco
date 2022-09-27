@@ -1,0 +1,48 @@
+.logged-in-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logged-in__image {
+    display: block;
+    width: 15rem;
+    height: auto;
+    margin-top: 7rem;
+}
+
+.login-from-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.login-heading {
+    color: var(--main-text-color);
+    text-align: center;
+    font-weight: 400;
+    margin-top: 10rem;
+    margin-bottom: 3rem;
+}
+
+.login-btn {
+    width: 100%;
+}
+
+.login-btn-dark {
+    background: var(--main-text-color);
+    color: #fff;
+}
+
+.login-btn-dark:hover {
+    background: inherit;
+    color: var(--main-text-color);
+}
+
+.login-btn-link {
+    display: flex;
+    width: fit-content;
+}
