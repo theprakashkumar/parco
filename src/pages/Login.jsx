@@ -1,10 +1,8 @@
 import "./Login.css";
-import Avatar from "../assets/account_circle_black_48dp.svg";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logInWithCredential } from "../features/auth/request";
-import { logout } from "../features/auth/authSlice";
 
 const Login = () => {
     const [credential, setCredential] = useState({ email: "", password: "" });
@@ -39,10 +37,6 @@ const Login = () => {
         );
     };
 
-    const handleLogout = () => {
-        dispatch(logout());
-    };
-
     const clearCredential = () => {
         if (isUserLoggedIn) {
             setCredential({ email: "", password: "" });
@@ -55,17 +49,7 @@ const Login = () => {
     return (
         <div className="login">
             {isUserLoggedIn ? (
-                <div className="logged-in-container">
-                    <img
-                        className="logged-in__image mt-2"
-                        src={Avatar}
-                        alt="Avatar Logo"
-                    />
-                    <div className="heading--h6 mt-1 mb-1">Hi {user.name}!</div>
-                    <button className="btn" onClick={handleLogout}>
-                        Logout
-                    </button>
-                </div>
+                <Navigate to="/" replace={true} />
             ) : (
                 <>
                     <div className="login-from-container">
