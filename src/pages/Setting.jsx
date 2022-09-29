@@ -2,9 +2,11 @@ import "./Setting.css";
 import { useState } from "react";
 import usePhoto from "../hooks/usePhoto";
 import { useSelector } from "react-redux";
-import usePhotoUpload from "../hooks/usePhotoUpload";
 import { updateUser } from "../features/auth/request";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import uploadPhoto from "../utils/uploadPhoto";
+import { useRef } from "react";
 
 const Setting = () => {
     const {
@@ -14,7 +16,7 @@ const Setting = () => {
     const photoLink = usePhoto(profilePhoto, name);
 
     const [newPhoto, setNewPhoto] = useState("");
-    const { newPhotoLink } = usePhotoUpload(newPhoto);
+    const [newPhotoLink, setNewPhotoLink] = useState("");
 
     const [userDetails, setUserDetails] = useState({
         name,
@@ -37,16 +39,35 @@ const Setting = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const changedProfilePhoto = newPhotoLink
+            ? newPhotoLink
+            : profilePhoto
+            ? profilePhoto
+            : "";
         await dispatch(
             updateUser({
                 userId: _id,
                 name: userDetails.name,
                 username: userDetails.username,
                 description: userDetails.description,
-                profilePhoto: newPhotoLink || "",
+                profilePhoto: changedProfilePhoto,
             })
         );
     };
+
+    // this is to not run useEffect when component mounted
+    const didNotMount = useRef(false);
+    useEffect(() => {
+        const updateNewPhotoLink = async () => {
+            if (didNotMount.current) {
+                const uploadedPhotoLink = await uploadPhoto(newPhoto);
+                setNewPhotoLink(uploadedPhotoLink);
+            } else {
+                didNotMount.current = true;
+            }
+        };
+        updateNewPhotoLink();
+    }, [newPhoto]);
     return (
         <div className="setting">
             {/* User Details Setting */}
