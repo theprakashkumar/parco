@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify"
 
 const logInWithCredential = createAsyncThunk(
     "auth/logInWithCredential",
@@ -9,10 +10,11 @@ const logInWithCredential = createAsyncThunk(
                 email,
                 password,
             });
-            console.log(response.data);
+            console.log(response.status);
             return response.data;
         } catch (error) {
-            console.log("Something Went Wrong While Logging In!", error);
+            console.log(error.response.data);
+            toast(error.response.data.message);
             return error.response;
         }
     }

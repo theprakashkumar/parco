@@ -1,6 +1,8 @@
 import "./Login.css";
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { logInWithCredential } from "../features/auth/request";
 
@@ -48,6 +50,17 @@ const Login = () => {
     }, [isUserLoggedIn]);
     return (
         <div className="login">
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             {isUserLoggedIn ? (
                 <Navigate to="/" replace={true} />
             ) : (
