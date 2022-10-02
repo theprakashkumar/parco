@@ -33,6 +33,7 @@ const signUp = createAsyncThunk(
             return response.data;
         } catch (error) {
             console.log("Something Went Wrong While Signup", error);
+            toast(error.response.data.message);
             return error.response;
         }
     }

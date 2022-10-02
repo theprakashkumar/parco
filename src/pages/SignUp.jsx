@@ -1,5 +1,7 @@
 import "./SignUp.css";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../features/auth/request";
 
@@ -40,6 +42,17 @@ const SignUp = () => {
     }, [isUserLoggedIn]);
     return (
         <div className="signup">
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className="sign-up-from-container">
                 <div className="heading heading--h4 sign-up-heading">
                     Create Account!
@@ -90,7 +103,15 @@ const SignUp = () => {
                         />
                     </div>
 
-                    <button class="btn btn--lg sign-up-btn mt-1">
+                    <button
+                        class="btn btn--lg sign-up-btn mt-1"
+                        disabled={
+                            !userDetails.name ||
+                            !userDetails.username ||
+                            !userDetails.email ||
+                            !userDetails.password
+                        }
+                    >
                         SIGN UP
                     </button>
                 </form>

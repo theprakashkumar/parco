@@ -16,6 +16,11 @@
     width: 100%;
 }
 
+.sign-up-btn:disabled:hover {
+    background: inherit;
+    color: #1010104d;
+}
+
 .input-text-username {
     background-image: url(../assets/fingerprint.png);
     transform: rotate(90);
