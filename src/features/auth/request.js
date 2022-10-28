@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 const logInWithCredential = createAsyncThunk(
     "auth/logInWithCredential",
-    async ({ password, email }) => {
+    async ({ password, email }, { rejectWithValue }) => {
         try {
             const response = await axios.post("/user/login", {
                 email,
@@ -15,14 +15,14 @@ const logInWithCredential = createAsyncThunk(
         } catch (error) {
             console.log(error.response.data);
             toast(error.response.data.message);
-            return error.response;
+            return rejectWithValue(error.response.data);
         }
     }
 );
 
 const signUp = createAsyncThunk(
     "auth/signUp",
-    async ({ name, username, email, password }) => {
+    async ({ name, username, email, password }, { rejectWithValue }) => {
         try {
             const response = await axios.post("/user/signup", {
                 name,
@@ -34,7 +34,7 @@ const signUp = createAsyncThunk(
         } catch (error) {
             console.log("Something Went Wrong While Signup", error);
             toast(error.response.data.message);
-            return error.response;
+            return rejectWithValue(error.response.data);
         }
     }
 );
@@ -77,7 +77,7 @@ const unFollow = createAsyncThunk("auth/unfollow", async (userId) => {
 
 const updateUser = createAsyncThunk(
     "auth/updateUser",
-    async ({ userId, name, username, description, profilePhoto }) => {
+    async ({ userId, name, username, description, profilePhoto }, { rejectWithValue }) => {
         try {
             const response = await axios.put(`/user/update/${userId}`, {
                 name,
@@ -89,7 +89,8 @@ const updateUser = createAsyncThunk(
             return response.data;
         } catch (error) {
             console.log("Something Went Wrong While Updating the User!");
-            return error.response;
+            toast(error.response.data.message);
+            return rejectWithValue(error.response.data);
         }
     }
 );

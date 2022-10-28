@@ -73,6 +73,7 @@ const authSlice = createSlice({
             }
         },
         [signUp.rejected]: (state, action) => {
+
             state.status = "error";
             state.error = action.payload;
         },

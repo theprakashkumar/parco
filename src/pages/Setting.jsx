@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { updateUser } from "../features/auth/request";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import uploadPhoto from "../utils/uploadPhoto";
 import { useRef } from "react";
 
@@ -72,6 +74,17 @@ const Setting = () => {
         <div className="setting">
             {/* User Details Setting */}
             <div className="setting__user-setting">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <form onSubmit={handleSubmit}>
                     <img
                         src={newPhotoLink ? newPhotoLink : photoLink}
