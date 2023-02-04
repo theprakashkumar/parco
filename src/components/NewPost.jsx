@@ -59,7 +59,7 @@ const NewPost = () => {
                 <div className="new-post__lower-element">
                     <div className="new-post__lower-element__button-container">
                         <label>
-                            <span class="material-icons-round new-post__add-photo">
+                            <span className="material-icons-round new-post__add-photo">
                                 add_photo_alternate
                             </span>
                             <input
