@@ -30,7 +30,6 @@ const Login = () => {
     };
 
     const guestLogin = async (e) => {
-        console.log("guest");
         dispatch(
             logInWithCredential({
                 password: "guest",
