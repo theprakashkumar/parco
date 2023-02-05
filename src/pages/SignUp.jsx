@@ -1,6 +1,6 @@
 import "./SignUp.css";
 import { useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../features/auth/request";
@@ -20,9 +20,27 @@ const SignUp = () => {
     const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const validatePassword = (password) => {
+        return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/i.test(password);
+    };
+
+    const validateEmail = (email) => {
+        return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/i.test(email);
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(signUp({ ...userDetails }));
+        const isValidPassword = validatePassword(userDetails.password);
+        const isValidEmail = validateEmail(userDetails.email);
+        if (!isValidEmail) {
+            return toast("Please enter valid email!");
+        } else if (!isValidPassword) {
+            toast(
+                "Password should be minimum eight characters, at least one letter and one number!"
+            );
+        } else {
+            dispatch(signUp({ ...userDetails }));
+        }
     };
 
     const handleChange = (e) => {

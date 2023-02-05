@@ -14,6 +14,7 @@ const Feed = () => {
 
     useEffect(() => {
         if (isUserLoggedIn) {
+            // setting the header again here because when the user new login/signup their token will be changed so we have set it again.
             axios.defaults.headers.common["authorization"] = JSON.parse(
                 localStorage.getItem("token")
             );

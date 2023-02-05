@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
-// axios.defaults.baseURL = "http://localhost:5000";
-axios.defaults.baseURL = "https://Parco-Backend.theprakashkumar.repl.co";
+axios.defaults.baseURL = "http://localhost:5050";
+// axios.defaults.baseURL = "https://Parco-Backend.theprakashkumar.repl.co";
 axios.defaults.headers.common["authorization"] = JSON.parse(
     localStorage.getItem("token")
 );
