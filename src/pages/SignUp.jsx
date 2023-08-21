@@ -29,11 +29,19 @@ const SignUp = () => {
     return /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+$/i.test(email);
   };
 
+  const validateUsername = (username) => {
+    return /(\s)/g.test(username);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isValidPassword = validatePassword(userDetails.password);
+    const isValidUsername = validateUsername(userDetails.username);
     const isValidEmail = validateEmail(userDetails.email);
-    if (!isValidEmail) {
+    const isValidPassword = validatePassword(userDetails.password);
+
+    if (isValidUsername) {
+      return toast("No space in the username!");
+    } else if (!isValidEmail) {
       return toast("Please enter valid email!");
     } else if (!isValidPassword) {
       toast(
