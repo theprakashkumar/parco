@@ -8,21 +8,23 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
-axios.defaults.baseURL = "http://localhost:5050";
-// axios.defaults.baseURL = "https://Parco-Backend.theprakashkumar.repl.co";
+axios.defaults.baseURL =
+  process.env.REACT_APP_BASE_URL ||
+  "https://Parco-Backend.theprakashkumar.repl.co";
+
 axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("token")
+  localStorage.getItem("token")
 );
 
 ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById("root")
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
