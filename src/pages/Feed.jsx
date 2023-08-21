@@ -1,3 +1,4 @@
+import "./Feed.css";
 import NewPost from "../components/NewPost";
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,9 +26,14 @@ const Feed = () => {
       {postStatus !== "getFeedPending" ? (
         <>
           <NewPost />
-          {feedPost.map((post) => (
-            <Post {...post} page="FEED" />
-          ))}
+          {feedPost.length === 0 ? (
+            <div className="feed__no-post">
+              <h2 className="feed__no-title">No Post Yet!</h2>
+              <p className="feed__no-emoji mt-1">\(o_o)/</p>
+            </div>
+          ) : (
+            feedPost.map((post) => <Post {...post} page="FEED" />)
+          )}
         </>
       ) : (
         <Loader />
