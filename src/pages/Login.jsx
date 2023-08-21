@@ -1,7 +1,7 @@
 import "./Login.css";
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { logInWithCredential } from "../features/auth/request";
@@ -21,6 +21,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!emailRegex.test(credential.email)) {
+      return toast("Please enter a valid email address");
+    }
     dispatch(
       logInWithCredential({
         password: credential.password,
