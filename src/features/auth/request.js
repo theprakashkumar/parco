@@ -10,10 +10,8 @@ const logInWithCredential = createAsyncThunk(
         email,
         password,
       });
-      console.log(response.status);
       return response.data;
     } catch (error) {
-      console.log(error.response.data);
       toast(error.response.data.message);
       return rejectWithValue(error.response.data);
     }
@@ -42,10 +40,8 @@ const signUp = createAsyncThunk(
 const initializeAuthUser = createAsyncThunk(
   "auth/initializeAuthUser",
   async (userId, { rejectWithValue }) => {
-    console.log("ini");
     try {
       const response = await axios.get(`/user/initialize/${userId}`);
-      console.log("response", response.data);
       return response.data;
     } catch (error) {
       console.log("Something Went Wrong While Initializing the User!");
@@ -68,7 +64,6 @@ const follow = createAsyncThunk("auth/follow", async (userId) => {
 const unFollow = createAsyncThunk("auth/unfollow", async (userId) => {
   try {
     const response = await axios.delete(`/action/unfollow/${userId}`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log("Something Went Wrong While Unfollowing the User!");
@@ -89,7 +84,6 @@ const updateUser = createAsyncThunk(
         description,
         profilePhoto,
       });
-      console.log("user updated", response.data);
       return response.data;
     } catch (error) {
       console.log("Something Went Wrong While Updating the User!");

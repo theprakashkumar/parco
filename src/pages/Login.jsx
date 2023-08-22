@@ -9,7 +9,7 @@ import { logInWithCredential } from "../features/auth/request";
 const Login = () => {
   const [credential, setCredential] = useState({ email: "", password: "" });
 
-  const { isUserLoggedIn, user } = useSelector((state) => state.auth);
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -50,6 +50,7 @@ const Login = () => {
 
   useEffect(() => {
     clearCredential();
+    // eslint-disable-next-line
   }, [isUserLoggedIn]);
   return (
     <div className="login">

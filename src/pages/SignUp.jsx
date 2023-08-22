@@ -66,6 +66,7 @@ const SignUp = () => {
       }
     };
     redirect();
+    // eslint-disable-next-line
   }, [isUserLoggedIn]);
   return (
     <div className="signup">

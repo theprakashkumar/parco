@@ -21,6 +21,7 @@ function App() {
     if (isUserLoggedIn) {
       dispatch(initializeAuthUser(userId));
     }
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="App">

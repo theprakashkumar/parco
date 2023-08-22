@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Feed = () => {
   const dispatch = useDispatch();
-  const { userId, isUserLoggedIn } = useSelector((state) => state.auth);
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const { feedPost, postStatus } = useSelector((state) => state.post);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const Feed = () => {
       );
       dispatch(getFeed());
     }
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="feed">

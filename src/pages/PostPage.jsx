@@ -6,24 +6,25 @@ import Loader from "../components/Loader";
 import { getSinglePost } from "../features/post/request";
 
 const PostPage = () => {
-    const dispatch = useDispatch();
-    const { id: postId } = useParams();
+  const dispatch = useDispatch();
+  const { id: postId } = useParams();
 
-    const { singlePost, singlePostStatus } = useSelector((state) => state.post);
-    useEffect(() => {
-        dispatch(getSinglePost({ postId }));
-    }, [postId]);
-    return (
+  const { singlePost, singlePostStatus } = useSelector((state) => state.post);
+  useEffect(() => {
+    dispatch(getSinglePost({ postId }));
+    // eslint-disable-next-line
+  }, [postId]);
+  return (
+    <div>
+      {singlePostStatus === "receivedSingPost" ? (
         <div>
-            {singlePostStatus === "receivedSingPost" ? (
-                <div>
-                    <Post {...singlePost} page="FEED" />
-                </div>
-            ) : (
-                <Loader />
-            )}
+          <Post {...singlePost} page="FEED" />
         </div>
-    );
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
 };
 
 export default PostPage;
