@@ -33,7 +33,9 @@ const Feed = () => {
               <p className="feed__no-emoji mt-1">\(o_o)/</p>
             </div>
           ) : (
-            feedPost.map((post) => <Post {...post} page="FEED" />)
+            feedPost.map((post) => (
+              <Post {...post} page="FEED" key={post._id} />
+            ))
           )}
         </>
       ) : (

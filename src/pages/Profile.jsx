@@ -55,6 +55,7 @@ const Profile = () => {
               likes={post.likes}
               comment={post.comment}
               page="PROFILE"
+              key={post._id}
             />
           ))}
         </div>

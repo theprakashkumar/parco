@@ -24,7 +24,7 @@ const Notification = () => {
             <EmptyNotification />
           ) : (
             notifications.map((notification) => (
-              <NotificationCard {...notification} />
+              <NotificationCard {...notification} key={notification._id} />
             ))
           )}
         </div>

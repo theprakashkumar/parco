@@ -45,7 +45,7 @@ const Explore = () => {
       ) : (
         <div className="explore__user-container">
           {exploreFeed?.map((user) => (
-            <ProfileCard {...user} />
+            <ProfileCard {...user} key={user._id} />
           ))}
         </div>
       )}
