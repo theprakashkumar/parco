@@ -117,7 +117,7 @@ const Post = ({
                 </button>
                 <button className="post__controllers__btn">
                     <span
-                        class="material-icons-round"
+                        className="material-icons-round"
                         onClick={() => setCommenting(!commenting)}
                     >
                         mode_comment

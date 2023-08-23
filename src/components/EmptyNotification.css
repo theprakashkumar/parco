@@ -1,0 +1,16 @@
+.empty-notification {
+  width: max-content;
+  padding-top: 8rem;
+  height: 95vh;
+  margin: 0 auto;
+}
+
+.empty-notification__image {
+  display: block;
+  width: 15rem;
+  height: auto;
+}
+
+.link {
+  text-decoration: none;
+}

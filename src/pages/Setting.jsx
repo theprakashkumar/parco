@@ -92,7 +92,7 @@ const Setting = () => {
                         alt="new-profile"
                     />
                     <label className="btn btn--icon btn--sm setting__user-setting__upload-btn">
-                        <span class="material-icons-round btn--icon__icon">
+                        <span className="material-icons-round btn--icon__icon">
                             file_upload
                         </span>
                         Upload
@@ -103,9 +103,9 @@ const Setting = () => {
                         ></input>
                     </label>
 
-                    <div class="input-text-wrapper mb-1">
+                    <div className="input-text-wrapper mb-1">
                         <input
-                            class="input-text  input-text-full-name"
+                            className="input-text  input-text-full-name"
                             type="text"
                             placeholder="Full Name"
                             name="name"
@@ -114,9 +114,9 @@ const Setting = () => {
                         />
                     </div>
 
-                    <div class="input-text-wrapper mb-1">
+                    <div className="input-text-wrapper mb-1">
                         <input
-                            class="input-text  input-text-username"
+                            className="input-text  input-text-username"
                             type="text"
                             placeholder="Username"
                             name="username"
@@ -125,9 +125,9 @@ const Setting = () => {
                         />
                     </div>
 
-                    <div class="input-text-wrapper">
+                    <div className="input-text-wrapper">
                         <input
-                            class="input-text input-text-description"
+                            className="input-text input-text-description"
                             type="input"
                             placeholder="Bio"
                             name="description"
@@ -135,7 +135,7 @@ const Setting = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <button class="btn btn--lg mt-1 setting__user-setting__update-btn">
+                    <button className="btn btn--lg mt-1 setting__user-setting__update-btn">
                         {status === "updatingUser" ? "Updating" : "Update"}
                     </button>
                 </form>
