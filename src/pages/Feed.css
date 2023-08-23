@@ -1,0 +1,12 @@
+.feed__no-post {
+  margin: 3rem auto;
+  width: fit-content;
+}
+
+.feed__no-title {
+  font-weight: 500;
+}
+
+.feed__no-emoji {
+  font-size: 5rem;
+}

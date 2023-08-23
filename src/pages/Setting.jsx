@@ -2,9 +2,13 @@ import "./Setting.css";
 import { useState } from "react";
 import usePhoto from "../hooks/usePhoto";
 import { useSelector } from "react-redux";
-import usePhotoUpload from "../hooks/usePhotoUpload";
 import { updateUser } from "../features/auth/request";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import uploadPhoto from "../utils/uploadPhoto";
+import { useRef } from "react";
 
 const Setting = () => {
     const {
@@ -14,7 +18,7 @@ const Setting = () => {
     const photoLink = usePhoto(profilePhoto, name);
 
     const [newPhoto, setNewPhoto] = useState("");
-    const { newPhotoLink } = usePhotoUpload(newPhoto);
+    const [newPhotoLink, setNewPhotoLink] = useState("");
 
     const [userDetails, setUserDetails] = useState({
         name,
@@ -37,20 +41,50 @@ const Setting = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const changedProfilePhoto = newPhotoLink
+            ? newPhotoLink
+            : profilePhoto
+            ? profilePhoto
+            : "";
         await dispatch(
             updateUser({
                 userId: _id,
                 name: userDetails.name,
                 username: userDetails.username,
                 description: userDetails.description,
-                profilePhoto: newPhotoLink || "",
+                profilePhoto: changedProfilePhoto,
             })
         );
     };
+
+    // this is to not run useEffect when component mounted
+    const didNotMount = useRef(false);
+    useEffect(() => {
+        const updateNewPhotoLink = async () => {
+            if (didNotMount.current) {
+                const uploadedPhotoLink = await uploadPhoto(newPhoto);
+                setNewPhotoLink(uploadedPhotoLink);
+            } else {
+                didNotMount.current = true;
+            }
+        };
+        updateNewPhotoLink();
+    }, [newPhoto]);
     return (
         <div className="setting">
             {/* User Details Setting */}
             <div className="setting__user-setting">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <form onSubmit={handleSubmit}>
                     <img
                         src={newPhotoLink ? newPhotoLink : photoLink}
@@ -58,7 +92,7 @@ const Setting = () => {
                         alt="new-profile"
                     />
                     <label className="btn btn--icon btn--sm setting__user-setting__upload-btn">
-                        <span class="material-icons-round btn--icon__icon">
+                        <span className="material-icons-round btn--icon__icon">
                             file_upload
                         </span>
                         Upload
@@ -69,9 +103,9 @@ const Setting = () => {
                         ></input>
                     </label>
 
-                    <div class="input-text-wrapper mb-1">
+                    <div className="input-text-wrapper mb-1">
                         <input
-                            class="input-text  input-text-full-name"
+                            className="input-text  input-text-full-name"
                             type="text"
                             placeholder="Full Name"
                             name="name"
@@ -80,9 +114,9 @@ const Setting = () => {
                         />
                     </div>
 
-                    <div class="input-text-wrapper mb-1">
+                    <div className="input-text-wrapper mb-1">
                         <input
-                            class="input-text  input-text-username"
+                            className="input-text  input-text-username"
                             type="text"
                             placeholder="Username"
                             name="username"
@@ -91,9 +125,9 @@ const Setting = () => {
                         />
                     </div>
 
-                    <div class="input-text-wrapper">
+                    <div className="input-text-wrapper">
                         <input
-                            class="input-text input-text-description"
+                            className="input-text input-text-description"
                             type="input"
                             placeholder="Bio"
                             name="description"
@@ -101,7 +135,7 @@ const Setting = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <button class="btn btn--lg mt-1 setting__user-setting__update-btn">
+                    <button className="btn btn--lg mt-1 setting__user-setting__update-btn">
                         {status === "updatingUser" ? "Updating" : "Update"}
                     </button>
                 </form>

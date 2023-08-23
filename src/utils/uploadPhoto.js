@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const getPhotoLink = async (preset, cloudName, cloudUrl, photo) => {
+const uploadPhoto = async (photo) => {
+  const cloudName = process.env.REACT_APP_CLOUD_NAME;
+  const cloudUrl = process.env.REACT_APP_CLOUD_URL;
+  const preset = process.env.REACT_APP_PRESET;
+
   try {
     const data = new FormData();
     data.append("file", photo);
@@ -19,4 +23,4 @@ const getPhotoLink = async (preset, cloudName, cloudUrl, photo) => {
   }
 };
 
-export default getPhotoLink;
+export default uploadPhoto;

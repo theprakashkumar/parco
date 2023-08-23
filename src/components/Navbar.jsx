@@ -16,8 +16,8 @@ const Navbar = () => {
                     end
                     to="/"
                 >
-                    <div class="icon-with-badge">
-                        <span class="material-icons-round icon-with-badge__icon">
+                    <div className="icon-with-badge">
+                        <span className="material-icons-round icon-with-badge__icon">
                             home
                         </span>
                     </div>
@@ -27,8 +27,8 @@ const Navbar = () => {
                     className="nav__item"
                     to="/explore"
                 >
-                    <div class="icon-with-badge">
-                        <span class="material-icons-round icon-with-badge__icon">
+                    <div className="icon-with-badge">
+                        <span className="material-icons-round icon-with-badge__icon">
                             explore
                         </span>
                     </div>
@@ -38,8 +38,8 @@ const Navbar = () => {
                     className="nav__item"
                     to="/notification"
                 >
-                    <div class="icon-with-badge">
-                        <span class="material-icons-round icon-with-badge__icon">
+                    <div className="icon-with-badge">
+                        <span className="material-icons-round icon-with-badge__icon">
                             notifications
                         </span>
                     </div>
@@ -49,8 +49,8 @@ const Navbar = () => {
                     className="nav__item"
                     to={`/profile/${userId}`}
                 >
-                    <div class="icon-with-badge">
-                        <span class="material-icons-round icon-with-badge__icon">
+                    <div className="icon-with-badge">
+                        <span className="material-icons-round icon-with-badge__icon">
                             person
                         </span>
                     </div>
