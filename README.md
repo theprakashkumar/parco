@@ -4,7 +4,7 @@ Parco is a social media app.
 
 ## Demo
 
-![screenshot-2](https://res.cloudinary.com/theprakashkumar/image/upload/v1692710320/Project%20Screenshot/Parco/Parco-Collage_duokzo.jpg)
+![screenshot-2](https://res.cloudinary.com/theprakashkumar/image/upload/v1692813404/Project%20Screenshot/Parco/Parco-Collage_qxnwto.jpg)
 
 ## Features
 
