@@ -9,7 +9,8 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 axios.defaults.baseURL =
-  process.env.REACT_APP_BASE_URL || "https://parco.onrender.com/";
+  process.env.REACT_APP_BASE_URL ||
+  "https://726114aa-546e-4e97-9d72-dfdd0f084969-00-ku7epqq2wq7q.janeway.replit.dev/";
 axios.defaults.headers.common["authorization"] = JSON.parse(
   localStorage.getItem("token")
 );
