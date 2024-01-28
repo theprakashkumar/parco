@@ -34,7 +34,7 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [logInWithCredential.pending]: (state) => {
-      state.status = "pending";
+      state.status = "loginPending";
     },
     [logInWithCredential.fulfilled]: (state, action) => {
       if (action.payload.success) {

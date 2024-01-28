@@ -9,7 +9,7 @@ import { logInWithCredential } from "../features/auth/request";
 const Login = () => {
   const [credential, setCredential] = useState({ email: "", password: "" });
 
-  const { isUserLoggedIn } = useSelector((state) => state.auth);
+  const { isUserLoggedIn, status } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -105,7 +105,9 @@ const Login = () => {
             </form>
 
             <button onClick={guestLogin} className="btn btn--md login-btn mb-1">
-              Login as Guest
+              {status === "loginPending"
+                ? "Logging In(First Request Takes a While)"
+                : "Login as Guest"}
             </button>
 
             <Link className="btn btn--link login-btn-link mt-1" to="/signup">
