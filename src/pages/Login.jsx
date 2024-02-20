@@ -106,7 +106,7 @@ const Login = () => {
 
             <button onClick={guestLogin} className="btn btn--md login-btn mb-1">
               {status === "loginPending"
-                ? "Logging In(First Request Takes a While)"
+                ? "Logging In(Only First Request Takes Lil Time!)"
                 : "Login as Guest"}
             </button>
 
